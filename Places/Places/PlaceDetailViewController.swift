@@ -10,6 +10,7 @@ import UIKit
 
 class PlaceDetailViewController: UIViewController {
 
+    var place: PlaceDescription?
     
     @IBOutlet weak var placeName: UILabel!
     
@@ -29,7 +30,18 @@ class PlaceDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupUi()
+    }
+    
+    func setupUi() -> Void {
+        placeName.text = place?.placeName
+        placeDescription.text = place?.descripion
+        category.text = place?.category
+        addressTitle.text = place?.addressTitle
+        addressStreet.text = place?.addressStreet
+        elevation.text = place?.elevation?.description
+        latitude.text = place?.latitude?.description
+        longitude.text = place?.longitude?.description
     }
 
 }

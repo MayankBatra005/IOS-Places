@@ -16,7 +16,7 @@ class StudentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var placeLibrary = PlaceLibrary()
+        let placeLibrary = PlaceLibrary()
         
         places = placeLibrary.getDummyPlaces()
         
@@ -42,11 +42,22 @@ class StudentTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "placecellIdentifier", for: indexPath)
 //        let mypet:(name:String,type:String) = pets[indexPath.row]
-        
         let place = places[indexPath.row]
         cell.textLabel?.text = place.placeName
         cell.detailTextLabel?.text = place.category
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "DetailSegue"){
+            let placeDetailView = segue.destination as! PlaceDetailViewController
+            placeDetailView.place = sender as? PlaceDescription
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let place = places[indexPath.row]
+        performSegue(withIdentifier: "DetailSegue", sender: place)
     }
     
     /*

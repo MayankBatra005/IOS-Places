@@ -87,7 +87,6 @@
                         <outlet property="longitude" destination="El0-11-dQC" id="TOg-e7-aHU"/>
                         <outlet property="placeDescription" destination="j9P-K6-TDN" id="eGc-Ev-4O5"/>
                         <outlet property="placeName" destination="mek-lo-2pl" id="RLe-fe-TnN"/>
-                        <outlet property="streetAddress" destination="8FF-Uw-fVu" id="O3y-ei-Fgz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
