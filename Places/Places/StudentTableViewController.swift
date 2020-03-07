@@ -11,12 +11,15 @@ import UIKit
 
 class StudentTableViewController: UITableViewController {
 
-    var pets: [(name:String, type:String)] = [("Kitty", "Cat"), ("Doggo","Dog"), ("Kitty1", "Cat"), ("Doggo1","Dog")]
-    
+    var places: Array<PlaceDescription> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var placeLibrary = PlaceLibrary()
+        
+        places = placeLibrary.getDummyPlaces()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -33,14 +36,16 @@ class StudentTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return pets.count
+        return places.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "placecellIdentifier", for: indexPath)
-        let mypet:(name:String,type:String) = pets[indexPath.row]
-        cell.textLabel?.text = mypet.name
-        cell.detailTextLabel?.text = mypet.type
+//        let mypet:(name:String,type:String) = pets[indexPath.row]
+        
+        let place = places[indexPath.row]
+        cell.textLabel?.text = place.placeName
+        cell.detailTextLabel?.text = place.category
         return cell
     }
     

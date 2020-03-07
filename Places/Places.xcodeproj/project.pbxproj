@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		141774B42412F7A300BC98A8 /* StudentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141774B32412F7A300BC98A8 /* StudentTableViewController.swift */; };
+		141774B624133E2E00BC98A8 /* PlaceDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141774B524133E2E00BC98A8 /* PlaceDescription.swift */; };
+		141774B8241432AF00BC98A8 /* PlaceLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141774B7241432AF00BC98A8 /* PlaceLibrary.swift */; };
 		148A8AC524070C3400B91CED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148A8AC424070C3400B91CED /* AppDelegate.swift */; };
 		148A8AC724070C3400B91CED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148A8AC624070C3400B91CED /* ViewController.swift */; };
 		148A8ACA24070C3400B91CED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 148A8AC824070C3400B91CED /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		141774B32412F7A300BC98A8 /* StudentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTableViewController.swift; sourceTree = "<group>"; };
+		141774B524133E2E00BC98A8 /* PlaceDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDescription.swift; sourceTree = "<group>"; };
+		141774B7241432AF00BC98A8 /* PlaceLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceLibrary.swift; sourceTree = "<group>"; };
 		148A8AC124070C3400B91CED /* Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Places.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		148A8AC424070C3400B91CED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		148A8AC624070C3400B91CED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 				148A8ACD24070C3500B91CED /* LaunchScreen.storyboard */,
 				148A8AD024070C3500B91CED /* Info.plist */,
 				141774B32412F7A300BC98A8 /* StudentTableViewController.swift */,
+				141774B524133E2E00BC98A8 /* PlaceDescription.swift */,
+				141774B7241432AF00BC98A8 /* PlaceLibrary.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -140,6 +146,8 @@
 			files = (
 				148A8AC724070C3400B91CED /* ViewController.swift in Sources */,
 				148A8AC524070C3400B91CED /* AppDelegate.swift in Sources */,
+				141774B624133E2E00BC98A8 /* PlaceDescription.swift in Sources */,
+				141774B8241432AF00BC98A8 /* PlaceLibrary.swift in Sources */,
 				141774B42412F7A300BC98A8 /* StudentTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
