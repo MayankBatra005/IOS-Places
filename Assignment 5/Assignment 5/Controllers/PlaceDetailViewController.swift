@@ -10,7 +10,6 @@ import UIKit
 
 class PlaceDetailViewController: UIViewController {
     
-    
     @IBOutlet weak var placeName: UITextView!
     @IBOutlet weak var placeDescription: UITextView!
     @IBOutlet weak var category: UITextView!
@@ -30,7 +29,6 @@ class PlaceDetailViewController: UIViewController {
     
     func setUpUI(){
         placeName.text = place?.placeName
-        
     }
 
 }

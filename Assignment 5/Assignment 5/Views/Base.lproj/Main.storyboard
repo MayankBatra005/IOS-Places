@@ -78,7 +78,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ISd-xs-wCj"/>
+                    <navigationItem key="navigationItem" id="ISd-xs-wCj">
+                        <barButtonItem key="rightBarButtonItem" title="Delete" image="delete" id="9bZ-ex-pt3"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="category" destination="idN-kr-G4e" id="V1p-at-igV"/>
                         <outlet property="elevation" destination="kZp-f7-R1d" id="xfa-QN-Dui"/>
@@ -129,7 +131,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="TKz-hi-mZX"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" id="zSB-hV-2mS"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="PlaceDetailSegue" id="zSB-hV-2mS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJQ-O1-RCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,4 +155,7 @@
             <point key="canvasLocation" x="-428" y="-236"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="delete" width="30" height="30"/>
+    </resources>
 </document>
