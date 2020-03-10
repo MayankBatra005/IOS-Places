@@ -79,7 +79,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="ISd-xs-wCj">
-                        <barButtonItem key="rightBarButtonItem" title="Delete" image="delete" id="9bZ-ex-pt3"/>
+                        <barButtonItem key="rightBarButtonItem" title="Delete" image="delete" id="9bZ-ex-pt3">
+                            <connections>
+                                <action selector="onDeleteClicked:" destination="BYZ-38-t0r" id="esR-OI-vVw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="category" destination="idN-kr-G4e" id="V1p-at-igV"/>

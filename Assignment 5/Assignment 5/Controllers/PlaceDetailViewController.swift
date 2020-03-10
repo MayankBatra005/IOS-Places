@@ -30,6 +30,23 @@ class PlaceDetailViewController: UIViewController {
     func setUpUI(){
         placeName.text = place?.placeName
     }
+    
+    
+    @IBAction func onDeleteClicked(_ sender: Any) {
+        
+        showDeleteAlert(title: "Delete", message: "Do you really want to delete this place?")
+    }
+    
+    
+    
+    func showDeleteAlert(title: String, message: String){
+        
+        let deleteAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        deleteAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {(action) in deleteAlert.dismiss(animated: true, completion: nil)}))
+        
+        self.present(deleteAlert, animated: true, completion: nil)
+    }
 
 }
 
