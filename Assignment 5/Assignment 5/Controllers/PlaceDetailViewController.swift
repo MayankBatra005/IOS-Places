@@ -40,9 +40,14 @@ class PlaceDetailViewController: UIViewController {
     
     func showDeleteAlert(title: String, message: String){
         
-        Alert.deletePlaceAlert(on: self)
+//        Alert.deletePlaceAlert(on: self)
+        deletethePlace()
+    }
+    
+    func deletethePlace(){
+        
+        performSegue(withIdentifier: "gobacktoPlaceList", sender: nil)
         
     }
-
 }
 

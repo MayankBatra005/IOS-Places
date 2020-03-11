@@ -12,6 +12,7 @@ import UIKit
 class PlaceListViewController: UITableViewController {
     
     var places = Array<PlaceDescription>()
+    var placeselectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class PlaceListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let place = places[indexPath.row]
+        placeselectedIndex = indexPath.row
         performSegue(withIdentifier: "PlaceDetailSegue", sender: place)
     }
     
@@ -50,6 +52,17 @@ class PlaceListViewController: UITableViewController {
             let placedetailViewContoller = segue.destination as! PlaceDetailViewController
             placedetailViewContoller.place = sender as? PlaceDescription
         }
+    }
+    
+    @IBAction func unwindToPlaceListVC(segue: UIStoryboardSegue) {
+        if(segue.identifier=="gobacktoPlaceList"){
+           deletePlace()
+        }
+    }
+    
+    private func deletePlace(){
+        places.remove(at: placeselectedIndex)
+        self.tableView.reloadData()
     }
     
 }

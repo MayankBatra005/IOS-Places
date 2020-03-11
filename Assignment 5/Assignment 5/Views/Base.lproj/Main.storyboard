@@ -94,9 +94,11 @@
                         <outlet property="placeName" destination="MVY-JC-Vg9" id="NqG-us-OWd"/>
                         <outlet property="streetAddress" destination="IYT-LA-PCI" id="3Wv-mI-enC"/>
                         <outlet property="streetTitle" destination="S6p-hS-9wT" id="r4k-ti-gIO"/>
+                        <segue destination="gmN-28-vU6" kind="unwind" identifier="gobacktoPlaceList" unwindAction="unwindToPlaceListVCWithSegue:" id="hgU-tp-uym"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="gmN-28-vU6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1341" y="-224"/>
         </scene>
