@@ -60,6 +60,11 @@ class PlaceListViewController: UITableViewController {
         }
     }
     
+    @IBAction func addNewPlace(_ sender: Any) {
+        performSegue(withIdentifier: "AddPlaceSegue", sender: nil)
+    }
+    
+    
     private func deletePlace(){
         places.remove(at: placeselectedIndex)
         self.tableView.reloadData()

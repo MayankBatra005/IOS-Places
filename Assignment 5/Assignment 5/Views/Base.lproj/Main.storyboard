@@ -135,14 +135,36 @@
                             <outlet property="delegate" destination="zTR-1A-DaV" id="xsG-3V-D7g"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="TKz-hi-mZX"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="TKz-hi-mZX">
+                        <barButtonItem key="rightBarButtonItem" title="Add Place" id="r7I-2S-lnZ">
+                            <connections>
+                                <action selector="addNewPlace:" destination="zTR-1A-DaV" id="xPW-AF-wsK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="PlaceDetailSegue" id="zSB-hV-2mS"/>
+                        <segue destination="1SI-aE-MCu" kind="show" identifier="AddPlaceSegue" id="SQ6-PF-5v1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJQ-O1-RCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="355" y="-236"/>
+        </scene>
+        <!--Add Place View Controller-->
+        <scene sceneID="c5J-j8-AYc">
+            <objects>
+                <viewController id="1SI-aE-MCu" customClass="AddPlaceViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vE3-ab-mBn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="UhK-ln-rZa"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kkz-5o-EG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="701" y="549"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tb9-Ec-lVR">
