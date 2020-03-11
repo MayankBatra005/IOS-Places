@@ -15,6 +15,7 @@
 		145CA7182416DD040010682E /* PlaceListViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CA7172416DD040010682E /* PlaceListViewContoller.swift */; };
 		145CA71B2416DFD90010682E /* PlaceDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CA71A2416DFD90010682E /* PlaceDescription.swift */; };
 		145CA71D2416E0E70010682E /* PlaceLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CA71C2416E0E70010682E /* PlaceLibrary.swift */; };
+		145CA71F241783AA0010682E /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CA71E241783AA0010682E /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		145CA7172416DD040010682E /* PlaceListViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListViewContoller.swift; sourceTree = "<group>"; };
 		145CA71A2416DFD90010682E /* PlaceDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDescription.swift; sourceTree = "<group>"; };
 		145CA71C2416E0E70010682E /* PlaceLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceLibrary.swift; sourceTree = "<group>"; };
+		145CA71E241783AA0010682E /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			children = (
 				145CA71A2416DFD90010682E /* PlaceDescription.swift */,
 				145CA71C2416E0E70010682E /* PlaceLibrary.swift */,
+				145CA71E241783AA0010682E /* Alert.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145CA71F241783AA0010682E /* Alert.swift in Sources */,
 				145CA7182416DD040010682E /* PlaceListViewContoller.swift in Sources */,
 				145CA7062416D9650010682E /* PlaceDetailViewController.swift in Sources */,
 				145CA71B2416DFD90010682E /* PlaceDescription.swift in Sources */,

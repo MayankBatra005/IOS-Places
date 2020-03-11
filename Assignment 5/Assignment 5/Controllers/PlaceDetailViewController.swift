@@ -38,14 +38,10 @@ class PlaceDetailViewController: UIViewController {
     }
     
     
-    
     func showDeleteAlert(title: String, message: String){
         
-        let deleteAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        Alert.deletePlaceAlert(on: self)
         
-        deleteAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {(action) in deleteAlert.dismiss(animated: true, completion: nil)}))
-        
-        self.present(deleteAlert, animated: true, completion: nil)
     }
 
 }
