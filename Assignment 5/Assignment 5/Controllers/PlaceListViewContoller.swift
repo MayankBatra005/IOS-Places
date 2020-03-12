@@ -13,6 +13,7 @@ class PlaceListViewController: UITableViewController {
     
     var places = Array<PlaceDescription>()
     var placeselectedIndex = 0
+    var modifiedPlace = PlaceDescription()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +56,13 @@ class PlaceListViewController: UITableViewController {
     }
     
     @IBAction func unwindToPlaceListVC(segue: UIStoryboardSegue) {
+        
+        print("This is before if condition")
         if(segue.identifier=="gobacktoPlaceList"){
            deletePlace()
+        }else if(segue.identifier=="SaveAddPlace"){
+            print("Save place Successfully")
+            addModifiedPlace()
         }
     }
     
@@ -67,6 +73,11 @@ class PlaceListViewController: UITableViewController {
     
     private func deletePlace(){
         places.remove(at: placeselectedIndex)
+        self.tableView.reloadData()
+    }
+    
+    private func addModifiedPlace(){
+        places.append(modifiedPlace)
         self.tableView.reloadData()
     }
     

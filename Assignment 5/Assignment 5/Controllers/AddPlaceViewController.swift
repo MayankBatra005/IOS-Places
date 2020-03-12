@@ -9,14 +9,37 @@
 import UIKit
 
 class AddPlaceViewController: UIViewController {
-
+    
+    var currentPlace = PlaceDescription()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func clickMe(_ sender: Any) {
+        print("This click")
+    }
+    
+    @IBAction func savePlace(_ sender: Any) {
+        performSegue(withIdentifier: "SaveAddPlace", sender: getCurrentPlace())
+        print("This is Menu item")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier=="SaveAddPlace"){
+            
+            let placeListVC = segue.destination as! PlaceListViewController
+            placeListVC.modifiedPlace = sender as! PlaceDescription
+        }
+    }
+    
+    func getCurrentPlace() -> PlaceDescription {
+        currentPlace.placeName = "Delhi"
+        return currentPlace
+    }
+    
     /*
     // MARK: - Navigation
 
