@@ -19,7 +19,7 @@ class PlaceDetailViewController: UIViewController {
     @IBOutlet weak var longitude: UITextView!
     @IBOutlet weak var latitude: UITextView!
     
-    var place: PlaceDescription?
+    var currentPlace: PlaceDescription?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class PlaceDetailViewController: UIViewController {
     }
     
     func setUpUI(){
-        placeName.text = place?.placeName
+        placeName.text = currentPlace?.placeName
     }
     
     
@@ -37,6 +37,9 @@ class PlaceDetailViewController: UIViewController {
         showDeleteAlert(title: "Delete", message: "Do you really want to delete this place?")
     }
     
+    @IBAction func modifyPlace(_ sender: Any) {
+        performSegue(withIdentifier: "modifyPlace", sender: getPlaceFromUI())
+    }
     
     func showDeleteAlert(title: String, message: String){
         
@@ -48,6 +51,26 @@ class PlaceDetailViewController: UIViewController {
         
         performSegue(withIdentifier: "gobacktoPlaceList", sender: nil)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier=="modifyPlace"){
+            let placeDetailVC = segue.destination as! PlaceListViewController
+            placeDetailVC.modifiedPlace = sender as! PlaceDescription
+        }
+    }
+    
+    func getPlaceFromUI() -> PlaceDescription{
+        currentPlace?.placeName = placeName.text
+        currentPlace?.placeDescription = placeDescription.text
+        currentPlace?.category = category.text
+        currentPlace?.streetTitle = streetTitle.text
+        currentPlace?.streetAddress = streetAddress.text
+        currentPlace?.elevation = Double(elevation.text)
+        currentPlace?.latitude = Double(latitude.text)
+        currentPlace?.longitude = Double(longitude.text)
+        
+        return currentPlace ?? PlaceDescription()
     }
 }
 

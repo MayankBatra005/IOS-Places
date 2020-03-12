@@ -51,7 +51,7 @@ class PlaceListViewController: UITableViewController {
         
         if(segue.identifier == "PlaceDetailSegue"){
             let placedetailViewContoller = segue.destination as! PlaceDetailViewController
-            placedetailViewContoller.place = sender as? PlaceDescription
+            placedetailViewContoller.currentPlace = sender as? PlaceDescription
         }
     }
     
@@ -62,7 +62,9 @@ class PlaceListViewController: UITableViewController {
            deletePlace()
         }else if(segue.identifier=="SaveAddPlace"){
             print("Save place Successfully")
-            addModifiedPlace()
+            addNewPlace()
+        }else if(segue.identifier=="modifyPlace"){
+            modifyPlace()
         }
     }
     
@@ -76,8 +78,13 @@ class PlaceListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    private func addModifiedPlace(){
+    private func addNewPlace(){
         places.append(modifiedPlace)
+        self.tableView.reloadData()
+    }
+    
+    private func modifyPlace(){
+        places[placeselectedIndex] = modifiedPlace
         self.tableView.reloadData()
     }
     

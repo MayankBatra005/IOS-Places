@@ -79,11 +79,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="ISd-xs-wCj">
-                        <barButtonItem key="rightBarButtonItem" title="Delete" image="delete" id="9bZ-ex-pt3">
-                            <connections>
-                                <action selector="onDeleteClicked:" destination="BYZ-38-t0r" id="esR-OI-vVw"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Delete" image="delete" id="9bZ-ex-pt3">
+                                <connections>
+                                    <action selector="onDeleteClicked:" destination="BYZ-38-t0r" id="esR-OI-vVw"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Save" id="ZUC-fG-BMf">
+                                <connections>
+                                    <action selector="modifyPlace:" destination="BYZ-38-t0r" id="Wwa-dW-hrT"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="category" destination="idN-kr-G4e" id="V1p-at-igV"/>
@@ -95,6 +102,7 @@
                         <outlet property="streetAddress" destination="IYT-LA-PCI" id="3Wv-mI-enC"/>
                         <outlet property="streetTitle" destination="S6p-hS-9wT" id="r4k-ti-gIO"/>
                         <segue destination="gmN-28-vU6" kind="unwind" identifier="gobacktoPlaceList" unwindAction="unwindToPlaceListVCWithSegue:" id="hgU-tp-uym"/>
+                        <segue destination="gmN-28-vU6" kind="unwind" identifier="modifyPlace" unwindAction="unwindToPlaceListVCWithSegue:" id="0rk-v4-gTe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
