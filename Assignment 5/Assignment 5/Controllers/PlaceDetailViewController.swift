@@ -34,6 +34,7 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
     @IBOutlet weak var distance: UITextView!
     @IBOutlet weak var bearing: UITextView!
     @IBOutlet weak var placesPickerView: UIPickerView!
+    @IBOutlet weak var pickPlaceButton: UIButton!
     
     var currentPlace: PlaceDescription?
     
@@ -57,6 +58,8 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         elevation.text = currentPlace?.elevation?.description
         latitude.text = currentPlace?.latitude?.description
         longitude.text = currentPlace?.longitude?.description
+        pickPlaceButton.setTitle("Pick a place", for: .normal)
+        placesPickerView.isHidden = true
     }
     
     
@@ -119,6 +122,9 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         
     }
     
+    
+    
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -131,6 +137,11 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         return PlaceLibrary.allPlaces[row].placeName
     }
     
+//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+//        placesPickerView.isHidden = false
+//        return false
+//    }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         let selectePlace = PlaceLibrary.allPlaces[row]
@@ -138,6 +149,14 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         let distanceValue = AppUtility.getDistance(currentPlace: currentPlace ?? PlaceDescription(), selectedPlace: selectePlace)
         distance.text = distanceValue.description+" KM".description
         bearing.text = bearingValue.description+" Degree".description
+        pickPlaceButton.setTitle(selectePlace.placeName, for: .normal)
+        placesPickerView.isHidden = true
+        
+    }
+    
+    
+    @IBAction func pickPlaceButtonClicked(_ sender: Any) {
+        placesPickerView.isHidden = false
     }
     
 }

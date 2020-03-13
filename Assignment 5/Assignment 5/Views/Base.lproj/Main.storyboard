@@ -26,70 +26,78 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="V07-8O-Y3l">
-                                <rect key="frame" x="20" y="187" width="378" height="50"/>
+                                <rect key="frame" x="20" y="176" width="378" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Category" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="idN-kr-G4e">
-                                <rect key="frame" x="20" y="265" width="378" height="50"/>
+                                <rect key="frame" x="20" y="243" width="378" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Street Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S6p-hS-9wT">
-                                <rect key="frame" x="20" y="343" width="378" height="50"/>
+                                <rect key="frame" x="20" y="310" width="378" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Street Address" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IYT-LA-PCI">
-                                <rect key="frame" x="20" y="421" width="378" height="50"/>
+                                <rect key="frame" x="20" y="377" width="378" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Elevation" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kZp-f7-R1d">
-                                <rect key="frame" x="20" y="499" width="378" height="50"/>
+                                <rect key="frame" x="20" y="444" width="378" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lontitude" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iQg-RK-h7C">
-                                <rect key="frame" x="20" y="577" width="378" height="50"/>
+                                <rect key="frame" x="20" y="511" width="378" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Latitude" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8yM-dI-dLc">
-                                <rect key="frame" x="20" y="655" width="378" height="50"/>
+                                <rect key="frame" x="20" y="578" width="378" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Distance" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="z9O-91-ygh">
-                                <rect key="frame" x="20" y="733" width="378" height="50"/>
+                                <rect key="frame" x="20" y="645" width="378" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Bearing" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ncf-su-i3m">
-                                <rect key="frame" x="20" y="811" width="378" height="50"/>
+                                <rect key="frame" x="20" y="712" width="378" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cq0-0J-JKH">
+                                <rect key="frame" x="27" y="770" width="371" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="pickPlaceButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y0m-i0-vxu"/>
+                                </connections>
+                            </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="876-qe-F41">
-                                <rect key="frame" x="0.0" y="702" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="340" width="414" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Vxr-TS-YQQ"/>
@@ -121,6 +129,7 @@
                         <outlet property="elevation" destination="kZp-f7-R1d" id="xfa-QN-Dui"/>
                         <outlet property="latitude" destination="8yM-dI-dLc" id="ypG-vF-Uzb"/>
                         <outlet property="longitude" destination="iQg-RK-h7C" id="6GJ-D3-TTW"/>
+                        <outlet property="pickPlaceButton" destination="Cq0-0J-JKH" id="zvz-WE-AF0"/>
                         <outlet property="placeDescription" destination="V07-8O-Y3l" id="rgh-yV-Het"/>
                         <outlet property="placeName" destination="MVY-JC-Vg9" id="NqG-us-OWd"/>
                         <outlet property="placesPickerView" destination="876-qe-F41" id="OYH-WG-noZ"/>
