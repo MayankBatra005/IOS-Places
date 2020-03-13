@@ -21,6 +21,10 @@ class PlaceDetailViewController: UIViewController, DialogCallBack {
     
     var currentPlace: PlaceDescription?
     
+    var menuItemClicked = -1
+    let deleteItemClicked = 0
+    let modifyItemClicked = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Inside")
@@ -42,14 +46,17 @@ class PlaceDetailViewController: UIViewController, DialogCallBack {
     @IBAction func onDeleteClicked(_ sender: Any) {
         
         showDeleteAlert(title: "Delete", message: "Do you really want to delete this place?")
+        
     }
     
     @IBAction func modifyPlace(_ sender: Any) {
-        performSegue(withIdentifier: "modifyPlace", sender: getPlaceFromUI())
+        menuItemClicked = modifyItemClicked
+        Alert.editPlaceAlet(on: self)
     }
     
     func showDeleteAlert(title: String, message: String){
         
+        menuItemClicked = deleteItemClicked
         Alert.deletePlaceAlert(on: self)
 
     }
@@ -58,6 +65,10 @@ class PlaceDetailViewController: UIViewController, DialogCallBack {
         
         performSegue(withIdentifier: "gobacktoPlaceList", sender: nil)
         
+    }
+    
+    func modifyPlace(){
+        performSegue(withIdentifier: "modifyPlace", sender: getPlaceFromUI())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -82,7 +93,13 @@ class PlaceDetailViewController: UIViewController, DialogCallBack {
     
     
     func okButtonCliked() {
-        deletethePlace()
+        
+        if(menuItemClicked == deleteItemClicked){
+            deletethePlace()
+        }else if(menuItemClicked == modifyItemClicked){
+            modifyPlace()
+        }
+        
     }
     
 }

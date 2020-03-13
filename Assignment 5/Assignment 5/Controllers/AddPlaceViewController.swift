@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddPlaceViewController: UIViewController {
+class AddPlaceViewController: UIViewController, DialogCallBack {
     
     @IBOutlet weak var placeName: UITextField!
     @IBOutlet weak var placeDescription: UITextField!
@@ -33,7 +33,7 @@ class AddPlaceViewController: UIViewController {
     }
     
     @IBAction func savePlace(_ sender: Any) {
-        performSegue(withIdentifier: "SaveAddPlace", sender: getCurrentPlaceFromUI())
+        Alert.savePlaceAlert(on: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,6 +54,11 @@ class AddPlaceViewController: UIViewController {
         currentPlace.latitude = Double(latitude.text ?? "")
         currentPlace.longitude = Double(longitude.text ?? "")
         return currentPlace
+    }
+    
+    
+    func okButtonCliked() {
+        performSegue(withIdentifier: "SaveAddPlace", sender: getCurrentPlaceFromUI())
     }
     
 }

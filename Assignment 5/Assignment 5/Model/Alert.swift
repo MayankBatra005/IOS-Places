@@ -24,7 +24,16 @@ struct Alert{
     }
     
     static func deletePlaceAlert(on vc: UIViewController){
-        createBasicAlert(on: vc, title: "Delete Place", message: "Do you really want to delete this place")
+        createBasicAlert(on: vc, title: "Delete Place", message: "Do you want to delete this place?")
+    }
+    
+    static func savePlaceAlert(on vc: UIViewController){
+        createBasicAlert(on: vc, title: "Save Place", message: "Do you want to save this place?")
+    }
+    
+    static func editPlaceAlet(on vc: UIViewController){
+        createBasicAlert(on: vc, title: "Edit place", message: "Do you want to modify the place information")
     }
     
 }
+
