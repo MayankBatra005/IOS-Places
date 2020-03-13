@@ -23,6 +23,8 @@ import Foundation
 
 class PlaceLibrary{
     
+    static var allPlaces = Array<PlaceDescription>()
+    
     static func createDummyPlaceList() -> Array<PlaceDescription> {
         
         var places = Array<PlaceDescription>()
@@ -40,6 +42,15 @@ class PlaceLibrary{
         }
         
         return places
+    }
+    
+    static func loadAllPlacesFromMemory(){
+        allPlaces = createDummyPlaceList()
+    }
+    
+    
+    static func getAllPlaces() -> Array<PlaceDescription>{
+        return allPlaces
     }
     
 }

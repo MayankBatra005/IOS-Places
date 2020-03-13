@@ -21,8 +21,8 @@
 
 import UIKit
 
-class PlaceDetailViewController: UIViewController, DialogCallBack {
-   
+class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewDataSource, UIPickerViewDelegate {
+    
     @IBOutlet weak var placeName: UITextView!
     @IBOutlet weak var placeDescription: UITextView!
     @IBOutlet weak var category: UITextView!
@@ -31,6 +31,9 @@ class PlaceDetailViewController: UIViewController, DialogCallBack {
     @IBOutlet weak var elevation: UITextView!
     @IBOutlet weak var longitude: UITextView!
     @IBOutlet weak var latitude: UITextView!
+    @IBOutlet weak var distance: UITextView!
+    @IBOutlet weak var bearing: UITextView!
+    @IBOutlet weak var placesPickerView: UIPickerView!
     
     var currentPlace: PlaceDescription?
     
@@ -41,6 +44,7 @@ class PlaceDetailViewController: UIViewController, DialogCallBack {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Inside")
+        PlaceLibrary.loadAllPlacesFromMemory()
         setUpUI()
     }
     
@@ -113,6 +117,27 @@ class PlaceDetailViewController: UIViewController, DialogCallBack {
             modifyPlace()
         }
         
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return PlaceLibrary.allPlaces.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return PlaceLibrary.allPlaces[row].placeName
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        let selectePlace = PlaceLibrary.allPlaces[row]
+        let bearingValue = AppUtility.getBearing(currentPlace: currentPlace ?? PlaceDescription(), selectedPlace: selectePlace)
+        let distanceValue = AppUtility.getDistance(currentPlace: currentPlace ?? PlaceDescription(), selectedPlace: selectePlace)
+        distance.text = distanceValue.description+" KM".description
+        bearing.text = bearingValue.description+" Degree".description
     }
     
 }
