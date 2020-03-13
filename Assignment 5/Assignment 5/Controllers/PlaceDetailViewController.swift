@@ -8,8 +8,8 @@
 
 import UIKit
 
-class PlaceDetailViewController: UIViewController {
-    
+class PlaceDetailViewController: UIViewController, DialogCallBack {
+   
     @IBOutlet weak var placeName: UITextView!
     @IBOutlet weak var placeDescription: UITextView!
     @IBOutlet weak var category: UITextView!
@@ -51,7 +51,7 @@ class PlaceDetailViewController: UIViewController {
     func showDeleteAlert(title: String, message: String){
         
         Alert.deletePlaceAlert(on: self)
-//        deletethePlace()
+
     }
     
     func deletethePlace(){
@@ -79,5 +79,11 @@ class PlaceDetailViewController: UIViewController {
         
         return currentPlace ?? PlaceDescription()
     }
+    
+    
+    func okButtonCliked() {
+        deletethePlace()
+    }
+    
 }
 

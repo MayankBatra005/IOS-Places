@@ -15,9 +15,8 @@ struct Alert{
         
         let deleteAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let detailPlaceVC = vc as! PlaceDetailViewController
-        
-        deleteAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {(action) in detailPlaceVC.deletethePlace()}))
+        let dialogController = vc as! DialogCallBack
+        deleteAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {(action) in dialogController.okButtonCliked()}))
         deleteAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {(action) in deleteAlert.dismiss(animated: true, completion: nil)}))
         
         vc.present(deleteAlert, animated: true, completion: nil)

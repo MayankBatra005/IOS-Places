@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol DialogCallBack {
+    
+    func okButtonCliked()
+
+}
