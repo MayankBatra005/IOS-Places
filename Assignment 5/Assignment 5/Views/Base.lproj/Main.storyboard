@@ -110,12 +110,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="ISd-xs-wCj">
                         <rightBarButtonItems>
-                            <barButtonItem title="Delete" image="delete" id="9bZ-ex-pt3">
+                            <barButtonItem title="Delete" image="delete_new" id="9bZ-ex-pt3">
                                 <connections>
                                     <action selector="onDeleteClicked:" destination="BYZ-38-t0r" id="esR-OI-vVw"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Save" id="ZUC-fG-BMf">
+                            <barButtonItem title="Save" image="save" id="ZUC-fG-BMf">
                                 <connections>
                                     <action selector="modifyPlace:" destination="BYZ-38-t0r" id="Wwa-dW-hrT"/>
                                 </connections>
@@ -178,7 +178,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="TKz-hi-mZX">
-                        <barButtonItem key="rightBarButtonItem" title="Add Place" id="r7I-2S-lnZ">
+                        <barButtonItem key="rightBarButtonItem" title="Add Place" image="add" id="r7I-2S-lnZ">
                             <connections>
                                 <action selector="addNewPlace:" destination="zTR-1A-DaV" id="xPW-AF-wsK"/>
                             </connections>
@@ -262,7 +262,7 @@
                         <viewLayoutGuide key="safeArea" id="UhK-ln-rZa"/>
                     </view>
                     <navigationItem key="navigationItem" id="yq3-6D-Mhh">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="1z9-PF-pc5">
+                        <barButtonItem key="rightBarButtonItem" title="Save" image="save" id="1z9-PF-pc5">
                             <connections>
                                 <action selector="savePlace:" destination="1SI-aE-MCu" id="WaT-IX-6uR"/>
                             </connections>
@@ -303,6 +303,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="delete" width="30" height="30"/>
+        <image name="add" width="50" height="50"/>
+        <image name="delete_new" width="50" height="50"/>
+        <image name="save" width="50" height="50"/>
     </resources>
 </document>
