@@ -14,7 +14,10 @@ struct Alert{
     private static func createBasicAlert(on vc:UIViewController, title: String, message: String){
         
         let deleteAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        deleteAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {(action) in deleteAlert.dismiss(animated: true, completion: nil)}))
+        
+        let detailPlaceVC = vc as! PlaceDetailViewController
+        
+        deleteAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {(action) in detailPlaceVC.deletethePlace()}))
         deleteAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {(action) in deleteAlert.dismiss(animated: true, completion: nil)}))
         
         vc.present(deleteAlert, animated: true, completion: nil)

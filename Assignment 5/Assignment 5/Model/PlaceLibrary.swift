@@ -14,9 +14,15 @@ class PlaceLibrary{
         
         var places = Array<PlaceDescription>()
         
-        
         for i in 1...10 {
-            let place = PlaceDescription(placeName: "Rohit"+i.description)
+            let place = PlaceDescription(placeName: "Place "+i.description)
+            place.placeDescription = "Desc "+i.description
+            place.category = "Category "+i.description
+            place.streetAddress = "StreetAddress "+i.description
+            place.streetTitle = "Street Title "+i.description
+            place.elevation = Double(10+i);
+            place.latitude = Double(233+i)
+            place.longitude = Double(100+i)
             places.append(place)
         }
         

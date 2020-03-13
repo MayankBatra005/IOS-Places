@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		140BD83B2419AA260097E9DB /* AddPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BD83A2419AA260097E9DB /* AddPlaceViewController.swift */; };
+		142AF082241B56C300767277 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AF081241B56C300767277 /* AppUtility.swift */; };
 		145CA7042416D9650010682E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CA7032416D9650010682E /* AppDelegate.swift */; };
 		145CA7062416D9650010682E /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CA7052416D9650010682E /* PlaceDetailViewController.swift */; };
 		145CA7092416D9650010682E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 145CA7072416D9650010682E /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		140BD83A2419AA260097E9DB /* AddPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceViewController.swift; sourceTree = "<group>"; };
+		142AF081241B56C300767277 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		145CA7002416D9650010682E /* Assignment 5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Assignment 5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		145CA7032416D9650010682E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		145CA7052416D9650010682E /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				145CA71A2416DFD90010682E /* PlaceDescription.swift */,
 				145CA71C2416E0E70010682E /* PlaceLibrary.swift */,
 				145CA71E241783AA0010682E /* Alert.swift */,
+				142AF081241B56C300767277 /* AppUtility.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				142AF082241B56C300767277 /* AppUtility.swift in Sources */,
 				145CA71F241783AA0010682E /* Alert.swift in Sources */,
 				145CA7182416DD040010682E /* PlaceListViewContoller.swift in Sources */,
 				140BD83B2419AA260097E9DB /* AddPlaceViewController.swift in Sources */,

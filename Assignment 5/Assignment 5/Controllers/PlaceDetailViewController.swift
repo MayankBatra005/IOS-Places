@@ -29,6 +29,13 @@ class PlaceDetailViewController: UIViewController {
     
     func setUpUI(){
         placeName.text = currentPlace?.placeName
+        placeDescription.text = currentPlace?.placeDescription
+        category.text = currentPlace?.category
+        streetTitle.text = currentPlace?.streetTitle
+        streetAddress.text = currentPlace?.streetAddress
+        elevation.text = currentPlace?.elevation?.description
+        latitude.text = currentPlace?.latitude?.description
+        longitude.text = currentPlace?.longitude?.description
     }
     
     
@@ -43,8 +50,8 @@ class PlaceDetailViewController: UIViewController {
     
     func showDeleteAlert(title: String, message: String){
         
-//        Alert.deletePlaceAlert(on: self)
-        deletethePlace()
+        Alert.deletePlaceAlert(on: self)
+//        deletethePlace()
     }
     
     func deletethePlace(){
