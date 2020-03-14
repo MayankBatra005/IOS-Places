@@ -1,10 +1,23 @@
-//
-//  PlaceItemCellCustomTableViewCell.swift
-//  Assignment 5
-//
-//  Created by Rohit  on 13/03/20.
-//  Copyright © 2020 Rohit . All rights reserved.
-//
+/*
+    * Copyright 2020 Rohit Kumar Singh,
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+* @author Rohit Kumar Singh rsingh92@asu.edu
+*
+* @version March 2016
+*/
+
 
 import UIKit
 
@@ -15,21 +28,19 @@ class PlaceItemCellCustom: UITableViewCell {
     
     @IBOutlet weak var placeName: UILabel!
     
-    
+    // View costomization
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderWidth = 5
+        self.layer.cornerRadius = 6
+        self.layer.shadowRadius = 2
+        self.clipsToBounds = true
     }
     
     func setView(place:PlaceDescription){
         let pname = place.placeName
         placeName.text = pname
-//        placeFace.text = getFaceValue(name: pname ?? " ")
     }
-    
-    private func getFaceValue(name:String) -> String{
-        let firstChar = Array(name)[0]
-        return firstChar.description
-    }
-    
     
 }

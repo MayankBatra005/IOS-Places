@@ -53,16 +53,17 @@ class PlaceListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         let place = places[indexPath.row]
-        
-        print(place.placeName?.description ?? " " )
-        
-    
         let customCell = tableView.dequeueReusableCell(withIdentifier: "PlaceListIdentifier", for: indexPath) as! PlaceItemCellCustom
         
         customCell.setView(place: place)
-//        customCell.setView(place: place)
-
+    
         return customCell
+    }
+    
+    
+    // Set the spacing between sections
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
