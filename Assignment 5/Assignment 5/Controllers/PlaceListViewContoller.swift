@@ -46,12 +46,23 @@ class PlaceListViewController: UITableViewController {
         return places.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceListIdentifier", for: indexPath)
+    
         let place = places[indexPath.row]
-        cell.textLabel?.text = place.placeName
-        cell.detailTextLabel?.text = place.placeDescription
-        return cell
+        
+        print(place.placeName?.description ?? " " )
+        
+    
+        let customCell = tableView.dequeueReusableCell(withIdentifier: "PlaceListIdentifier", for: indexPath) as! PlaceItemCellCustom
+        
+        customCell.setView(place: place)
+//        customCell.setView(place: place)
+
+        return customCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
