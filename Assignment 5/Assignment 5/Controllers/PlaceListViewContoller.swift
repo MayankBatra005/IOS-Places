@@ -31,6 +31,13 @@ class PlaceListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadListFromSource()
+        setCustomizedNavBar()
+    }
+    
+    func setCustomizedNavBar(){
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.blackOpaque
+        nav?.tintColor = UIColor.white
     }
     
     func loadListFromSource(){
