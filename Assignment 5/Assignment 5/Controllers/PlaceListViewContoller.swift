@@ -106,7 +106,6 @@ class PlaceListViewController: UITableViewController {
     
     
     private func deletePlace(){
-        
         PlaceLibrary.deletePlaceOnServer(placeName: PlaceLibrary.allremotePlaces[placeselectedIndex].placeName ?? "")
         PlaceLibrary.allremotePlaces.remove(at: placeselectedIndex)
         refreshList()
@@ -115,6 +114,7 @@ class PlaceListViewController: UITableViewController {
     
     private func addNewPlace(){
         PlaceLibrary.allremotePlaces.append(modifiedPlace)
+        PlaceLibrary.addPlaceOnServer(place: modifiedPlace)
         self.tableView.reloadData()
     }
     

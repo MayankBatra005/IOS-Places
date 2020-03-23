@@ -164,6 +164,23 @@ class PlaceLibrary{
         return place
     }
     
+    static func getJsonFromPlaceDesc(place: PlaceDescription) -> [String:Any]{
+        
+        let name: String? = place.placeName
+        let description: String? = place.placeDescription
+        let category: String? = place.category
+        let address_title: String?  = place.streetTitle
+        let address_street: String? = place.streetAddress
+        let elevation: Double? = place.elevation
+        let latitude: Double? = place.latitude
+        let longitude: Double? = place.longitude
+        
+        let dict:[String:Any] = ["name": name,"description" :description ,"category": category,
+                                 "address_title" : address_title, "address_street" :address_street,
+                                 "elevation" : elevation, "latitude" : latitude, "longitude" : longitude] as [String : Any]
+        return dict
+    }
+    
     
     static func deletePlaceOnServer(placeName: String){
         let connection = PlaceCollectionAsyncTask(urlString: urlString)
@@ -176,6 +193,19 @@ class PlaceLibrary{
                 print(res)
             }
             
+        })
+    }
+    
+    
+    static func addPlaceOnServer(place: PlaceDescription){
+        let connection = PlaceCollectionAsyncTask(urlString: urlString)
+        connection.add(place: place, callback: {(res: String, err: String?) -> Void in
+            if err != nil {
+                NSLog(err!)
+            }else{
+                print("Added")
+                print(res)
+            }
         })
     }
     
