@@ -152,8 +152,6 @@ class PlaceLibrary{
         
         let place = PlaceDescription()
         
-        print(place==nil)
-        
         place.placeName = jsonObject["name"] as? String
         place.placeDescription = jsonObject["description"] as? String
         place.category = jsonObject["category"] as? String
@@ -163,21 +161,26 @@ class PlaceLibrary{
         place.longitude = jsonObject["longitude"] as? Double
         place.elevation = jsonObject["elevation"] as? Double
         
-        
-//        print(place.placeName!)
-//        print(place.placeDescription!)
-//        print(place.category!)
-//        print(place.streetAddress!)
-//        print(place.streetTitle!)
-//        print(place.elevation!)
-//        print(place.longitude!)
-//        print(place.latitude!)
-        
-        
-        
-
         return place
     }
+    
+    
+    static func deletePlaceOnServer(placeName: String){
+        let connection = PlaceCollectionAsyncTask(urlString: urlString)
+        connection.remove(placeName: placeName, callback: {(res: String, err: String?) -> Void in
+            
+            if err != nil {
+                NSLog(err!)
+            }else{
+                print("Deleted")
+                print(res)
+            }
+            
+        })
+    }
+    
+    
+    
     
     
 }

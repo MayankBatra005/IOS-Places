@@ -24,7 +24,7 @@ import UIKit
 
 class PlaceListViewController: UITableViewController {
     
-    var places = Array<PlaceDescription>()
+//    var places = Array<PlaceDescription>()
     var placeselectedIndex = 0
     var modifiedPlace = PlaceDescription()
     
@@ -50,7 +50,7 @@ class PlaceListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return places.count
+        return PlaceLibrary.allremotePlaces.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,7 +59,7 @@ class PlaceListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-        let place = places[indexPath.row]
+        let place = PlaceLibrary.allremotePlaces[indexPath.row]
         let customCell = tableView.dequeueReusableCell(withIdentifier: "PlaceListIdentifier", for: indexPath) as! PlaceItemCellCustom
         
         customCell.setView(place: place)
@@ -74,7 +74,7 @@ class PlaceListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let place = places[indexPath.row]
+        let place = PlaceLibrary.allremotePlaces[indexPath.row]
         placeselectedIndex = indexPath.row
         performSegue(withIdentifier: "PlaceDetailSegue", sender: place)
     }
@@ -106,31 +106,24 @@ class PlaceListViewController: UITableViewController {
     
     
     private func deletePlace(){
-        places.remove(at: placeselectedIndex)
-        self.tableView.reloadData()
+        
+        PlaceLibrary.deletePlaceOnServer(placeName: PlaceLibrary.allremotePlaces[placeselectedIndex].placeName ?? "")
+        PlaceLibrary.allremotePlaces.remove(at: placeselectedIndex)
+        refreshList()
+
     }
     
     private func addNewPlace(){
-        places.append(modifiedPlace)
+        PlaceLibrary.allremotePlaces.append(modifiedPlace)
         self.tableView.reloadData()
     }
     
     private func modifyPlace(){
-        places[placeselectedIndex] = modifiedPlace
+        PlaceLibrary.allremotePlaces[placeselectedIndex] = modifiedPlace
         self.tableView.reloadData()
     }
     
     public func refreshList(){
-        places = PlaceLibrary.allremotePlaces
-        print("Refresh List")
-        print(places.count)
-        
-//        for place in places{
-//            print(place.placeName?.description)
-//            print(place.placeDescription?.description)
-//            print(place.category?.description)
-//        }
-        
         self.tableView.reloadData()
     }
     
