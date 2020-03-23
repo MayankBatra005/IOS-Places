@@ -20,37 +20,132 @@
 
 
 import Foundation
+import UIKit
 
 class PlaceLibrary{
     
-    static var allPlaces = Array<PlaceDescription>()
+//    static var allPlaces = Array<PlaceDescription>()
     
-    static func createDummyPlaceList() -> Array<PlaceDescription> {
-        
-        var places = Array<PlaceDescription>()
-        
-        for i in 1...10 {
-            let place = PlaceDescription(placeName: "Place "+i.description)
-            place.placeDescription = "Desc "+i.description
-            place.category = "Category "+i.description
-            place.streetAddress = "StreetAddress "+i.description
-            place.streetTitle = "Street Title "+i.description
-            place.elevation = Double(10+i);
-            place.latitude = Double(233+i)
-            place.longitude = Double(100+i)
-            places.append(place)
-        }
-        
-        return places
-    }
+    static var allremotePlaces = Array<PlaceDescription>()
     
-    static func loadAllPlacesFromMemory(){
-        allPlaces = createDummyPlaceList()
+    private static var urlString:String = "http://127.0.0.1:8080"
+    
+//    static func createDummyPlaceList() -> Array<PlaceDescription> {
+//
+//        var places = Array<PlaceDescription>()
+//
+//        for i in 1...10 {
+//            let place = PlaceDescription(placeName: "Place "+i.description)
+//            place.placeDescription = "Desc "+i.description
+//            place.category = "Category "+i.description
+//            place.streetAddress = "StreetAddress "+i.description
+//            place.streetTitle = "Street Title "+i.description
+//            place.elevation = Double(10+i);
+//            place.latitude = Double(233+i)
+//            place.longitude = Double(100+i)
+//            places.append(place)
+//        }
+//
+//        return places
+//    }
+    
+    static func loadAllPlacesFromMemory(vc: UIViewController){
+        getAllPlacesFromServer(vc: vc)
     }
     
     
     static func getAllPlaces() -> Array<PlaceDescription>{
-        return allPlaces
+        return allremotePlaces
     }
+    
+    private static func loadPlaceinPlaceList(placeName: String){
+        let connection: PlaceCollectionAsyncTask = PlaceCollectionAsyncTask(urlString: urlString)
+        connection.get(name: placeName, callback: {(res: String, err: String?) -> Void in
+            
+            if err != nil{
+                NSLog(err!)
+            }else{
+                NSLog(res)
+                if let data: Data = res.data(using: String.Encoding.utf8){
+                    
+                    
+                    do {
+                        if let jsonObject = try JSONSerialization.jsonObject(with: data, options : []) as? [String: Any]{
+                            
+                            
+                            let placeDetail = jsonObject["name"] as? [String:Any]
+                            allremotePlaces.append(getPlaceDescFromJson(jsonObject: placeDetail ?? ["":nil]))
+                            
+                        } else {
+                            print("bad json")
+                        }
+                    } catch let error as NSError {
+                        print(error)
+                    }
+                }
+            }
+            
+            
+        })
+    }
+    
+    static func getAllPlacesFromServer(vc : UIViewController){
+        
+        let connection: PlaceCollectionAsyncTask = PlaceCollectionAsyncTask(urlString: urlString)
+        
+        connection.getNames(callback: { (res: String, err: String?) -> Void in
+            if err != nil {
+                NSLog(err!)
+            }else{
+                NSLog(res)
+                if let data: Data = res.data(using: String.Encoding.utf8){
+                    
+//                    print(data.description)
+                    
+                    do {
+                        if let jsonObject = try JSONSerialization.jsonObject(with: data, options : []) as? [String: Any]{
+                            
+                            let placelist = vc as! PlaceListViewController
+                            let placeNamesArray = jsonObject["result"] as! [String]
+                            var index = 0
+                            for placeName in placeNamesArray{
+                                index = index+1
+                                loadPlaceinPlaceList(placeName: placeName)
+                                placelist.tableView.reloadData()
+                                
+                                if placeNamesArray.count == index{
+                                    print("Inside load")
+                                    placelist.refreshList()
+                                }
+                            }
+                            
+                            
+                        } else {
+                            print("bad json")
+                        }
+                    } catch let error as NSError {
+                        print(error)
+                    }
+                }
+            }
+        })
+    }
+    
+    private static func getPlaceDescFromJson(jsonObject: [String:Any]) -> PlaceDescription{
+        
+        var place = PlaceDescription()
+        
+        place.placeName = jsonObject["name"] as? String
+        place.placeDescription = jsonObject["description"] as? String
+        place.category = jsonObject["category"] as? String
+        place.streetTitle = jsonObject["address-title"] as? String
+        place.streetAddress = jsonObject["address-street"] as? String
+        place.latitude = jsonObject["latitude"] as? Double
+        place.longitude = jsonObject["longitude"] as? Double
+        place.elevation = jsonObject["elevation"] as? Double
+
+        return place
+    }
+    
     
 }

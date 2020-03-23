@@ -41,8 +41,8 @@ class PlaceListViewController: UITableViewController {
     }
     
     func loadListFromSource(){
-        places = PlaceLibrary.createDummyPlaceList()
-        print(places.count.description)
+
+        PlaceLibrary.loadAllPlacesFromMemory(vc:self)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -117,6 +117,13 @@ class PlaceListViewController: UITableViewController {
     
     private func modifyPlace(){
         places[placeselectedIndex] = modifiedPlace
+        self.tableView.reloadData()
+    }
+    
+    public func refreshList(){
+        places = PlaceLibrary.allremotePlaces
+        print("Refresh List")
+        print(places.count)
         self.tableView.reloadData()
     }
     

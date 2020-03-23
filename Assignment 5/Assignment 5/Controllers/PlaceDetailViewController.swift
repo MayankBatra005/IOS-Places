@@ -45,7 +45,7 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Inside")
-        PlaceLibrary.loadAllPlacesFromMemory()
+        PlaceLibrary.loadAllPlacesFromMemory(vc:self)
         setUpUI()
     }
     
@@ -99,6 +99,7 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
     }
     
     func getPlaceFromUI() -> PlaceDescription{
+        
         currentPlace?.placeName = placeName.text
         currentPlace?.placeDescription = placeDescription.text
         currentPlace?.category = category.text
@@ -122,19 +123,16 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         
     }
     
-    
-    
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return PlaceLibrary.allPlaces.count
+        return PlaceLibrary.allremotePlaces.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return PlaceLibrary.allPlaces[row].placeName
+        return PlaceLibrary.allremotePlaces[row].placeName
     }
     
 //    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
@@ -144,7 +142,7 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        let selectePlace = PlaceLibrary.allPlaces[row]
+        let selectePlace = PlaceLibrary.allremotePlaces[row]
         let bearingValue = AppUtility.getBearing(currentPlace: currentPlace ?? PlaceDescription(), selectedPlace: selectePlace)
         let distanceValue = AppUtility.getDistance(currentPlace: currentPlace ?? PlaceDescription(), selectedPlace: selectePlace)
         distance.text = distanceValue.description+" KM".description

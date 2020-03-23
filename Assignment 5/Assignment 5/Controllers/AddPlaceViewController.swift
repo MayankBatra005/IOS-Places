@@ -68,7 +68,6 @@ class AddPlaceViewController: UIViewController, DialogCallBack {
         return currentPlace
     }
     
-    
     func okButtonCliked() {
         performSegue(withIdentifier: "SaveAddPlace", sender: getCurrentPlaceFromUI())
     }
