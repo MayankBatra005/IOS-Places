@@ -40,4 +40,5 @@ class PlaceDescription {
     init(placeName: String) {
         self.placeName = placeName
     }
+    
 }

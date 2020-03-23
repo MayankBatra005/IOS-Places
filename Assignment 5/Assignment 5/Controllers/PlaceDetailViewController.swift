@@ -45,7 +45,7 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Inside")
-        PlaceLibrary.loadAllPlacesFromMemory(vc:self)
+//        PlaceLibrary.loadAllPlacesFromMemory(vc:self)
         setUpUI()
     }
     

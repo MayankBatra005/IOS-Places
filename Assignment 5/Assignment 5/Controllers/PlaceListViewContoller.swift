@@ -124,6 +124,13 @@ class PlaceListViewController: UITableViewController {
         places = PlaceLibrary.allremotePlaces
         print("Refresh List")
         print(places.count)
+        
+//        for place in places{
+//            print(place.placeName?.description)
+//            print(place.placeDescription?.description)
+//            print(place.category?.description)
+//        }
+        
         self.tableView.reloadData()
     }
     
