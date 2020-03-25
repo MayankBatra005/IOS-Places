@@ -18,41 +18,17 @@
  * @version March 2016
  */
 
-
 import Foundation
 import UIKit
 
 class PlaceLibrary{
     
-//    static var allPlaces = Array<PlaceDescription>()
-    
     static var allremotePlaces = Array<PlaceDescription>()
-    
     private static var urlString:String = "http://127.0.0.1:8080"
-    
     
     private static var listSize: Int = 0
     private static var placeParced: Int = 0
 
-    
-//    static func createDummyPlaceList() -> Array<PlaceDescription> {
-//
-//        var places = Array<PlaceDescription>()
-//
-//        for i in 1...10 {
-//            let place = PlaceDescription(placeName: "Place "+i.description)
-//            place.placeDescription = "Desc "+i.description
-//            place.category = "Category "+i.description
-//            place.streetAddress = "StreetAddress "+i.description
-//            place.streetTitle = "Street Title "+i.description
-//            place.elevation = Double(10+i);
-//            place.latitude = Double(233+i)
-//            place.longitude = Double(100+i)
-//            places.append(place)
-//        }
-//
-//        return places
-//    }
     
     static func loadAllPlacesFromMemory(vc: UIViewController){
         getAllPlacesFromServer(vc: vc)
@@ -77,11 +53,7 @@ class PlaceLibrary{
                     do {
                         if let jsonObject = try JSONSerialization.jsonObject(with: data, options : []) as? [String: Any]{
                             
-                            
                             let placeDetail = jsonObject["result"] as? [String:Any]
-                            
-                            
-                            
                             allremotePlaces.append(getPlaceDescFromJson(jsonObject: placeDetail ?? ["":nil]))
                             
                         } else {
@@ -93,15 +65,12 @@ class PlaceLibrary{
                 }
             }
             
-            
-            
             placeParced = placeParced+1
             
             if(placeParced==listSize){
                 let placeListVC = vc as! PlaceListViewController
                 placeListVC.refreshList()
             }
-            
             
         })
     }
@@ -117,8 +86,6 @@ class PlaceLibrary{
                 NSLog(res)
                 if let data: Data = res.data(using: String.Encoding.utf8){
                     
-//                    print(data.description)
-                    
                     do {
                         if let jsonObject = try JSONSerialization.jsonObject(with: data, options : []) as? [String: Any]{
                             
@@ -128,14 +95,8 @@ class PlaceLibrary{
                             listSize = placeNamesArray.count
                             
                             for placeName in placeNamesArray{
-                                
-                                
-                                
                                 loadPlaceinPlaceList(placeName: placeName, vc: vc)
-                                
-                                
                             }
-                            
                             
                         } else {
                             print("bad json")
@@ -181,7 +142,6 @@ class PlaceLibrary{
         return dict
     }
     
-    
     static func deletePlaceOnServer(placeName: String){
         let connection = PlaceCollectionAsyncTask(urlString: urlString)
         connection.remove(placeName: placeName, callback: {(res: String, err: String?) -> Void in
@@ -196,7 +156,6 @@ class PlaceLibrary{
         })
     }
     
-    
     static func addPlaceOnServer(place: PlaceDescription){
         let connection = PlaceCollectionAsyncTask(urlString: urlString)
         connection.add(place: place, callback: {(res: String, err: String?) -> Void in
@@ -208,9 +167,5 @@ class PlaceLibrary{
             }
         })
     }
-    
-    
-    
-    
     
 }

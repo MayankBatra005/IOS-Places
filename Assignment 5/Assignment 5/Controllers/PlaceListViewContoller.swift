@@ -24,7 +24,6 @@ import UIKit
 
 class PlaceListViewController: UITableViewController {
     
-//    var places = Array<PlaceDescription>()
     var placeselectedIndex = 0
     var modifiedPlace = PlaceDescription()
     

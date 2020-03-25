@@ -44,8 +44,6 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Inside")
-//        PlaceLibrary.loadAllPlacesFromMemory(vc:self)
         setUpUI()
     }
     
@@ -112,7 +110,6 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         return currentPlace ?? PlaceDescription()
     }
     
-    
     func okButtonCliked() {
         
         if(menuItemClicked == deleteItemClicked){
@@ -135,11 +132,6 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         return PlaceLibrary.allremotePlaces[row].placeName
     }
     
-//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-//        placesPickerView.isHidden = false
-//        return false
-//    }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         let selectePlace = PlaceLibrary.allremotePlaces[row]
@@ -149,13 +141,10 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         bearing.text = bearingValue.description+" Degree".description
         pickPlaceButton.setTitle(selectePlace.placeName, for: .normal)
         placesPickerView.isHidden = true
-        
     }
-    
     
     @IBAction func pickPlaceButtonClicked(_ sender: Any) {
         placesPickerView.isHidden = false
     }
     
 }
-

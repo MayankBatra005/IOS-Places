@@ -36,8 +36,6 @@ class AddPlaceViewController: UIViewController, DialogCallBack {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func clickMe(_ sender: Any) {
