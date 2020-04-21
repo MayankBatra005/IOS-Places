@@ -26,14 +26,27 @@ class PlaceDB{
         var places = Array<PlaceDescription>()
         
         do{
-            let result = try context!.fetch(fetchPlacesRequest)
-            NSLog("Places loaded \(result.count)")
-            for place in result{
-                places.append(place as! PlaceDescription)
+            let results = try context!.fetch(fetchPlacesRequest)
+            NSLog("Places loaded \(results.count)")
+            for result in results{
+//                places.append(place as! PlaceDescription)
+                let place: PlaceDescription = PlaceDescription()
+                place.placeName = (result as AnyObject).value(forKey:"name") as? String
+                place.placeDescription = (result as AnyObject).value(forKey:"desc") as? String
+                place.category = (result as AnyObject).value(forKey:"category") as? String
+                place.streetTitle = (result as AnyObject).value(forKey:"street_title") as? String
+                place.streetAddress = (result as AnyObject).value(forKey:"street_address") as? String
+                place.elevation = (result as AnyObject).value(forKey:"elevation") as? Double
+                place.latitude = (result as AnyObject).value(forKey:"latitude") as? Double
+                place.longitude = (result as AnyObject).value(forKey:"longitude") as? Double
+                
+                places.append(place)
+                
             }
+            
             PlaceLibrary.allremotePlaces = places
             vc.tableView.reloadData()
-             NSLog("Places loaded \(result.count)")
+             NSLog("Places loaded \(results.count)")
             
             
             
@@ -42,6 +55,8 @@ class PlaceDB{
         }
         
     }
+    
+    
     
     func addPlace(place: PlaceDescription){
         let entity = NSEntityDescription.entity(forEntityName: "Place", in: context!)
