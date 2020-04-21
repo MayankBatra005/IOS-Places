@@ -11,6 +11,7 @@
 		140BD83B2419AA260097E9DB /* AddPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BD83A2419AA260097E9DB /* AddPlaceViewController.swift */; };
 		142AF082241B56C300767277 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AF081241B56C300767277 /* AppUtility.swift */; };
 		142AF089241BA19700767277 /* DialogCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AF088241BA19700767277 /* DialogCallBack.swift */; };
+		14470B76244E8F62005200B3 /* PlaceDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14470B74244E8F62005200B3 /* PlaceDatabase.xcdatamodeld */; };
 		145CA7042416D9650010682E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CA7032416D9650010682E /* AppDelegate.swift */; };
 		145CA7062416D9650010682E /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CA7052416D9650010682E /* PlaceDetailViewController.swift */; };
 		145CA7092416D9650010682E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 145CA7072416D9650010682E /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		140BD83A2419AA260097E9DB /* AddPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceViewController.swift; sourceTree = "<group>"; };
 		142AF081241B56C300767277 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		142AF088241BA19700767277 /* DialogCallBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogCallBack.swift; sourceTree = "<group>"; };
+		14470B75244E8F62005200B3 /* PlaceDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlaceDatabase.xcdatamodel; sourceTree = "<group>"; };
 		145CA7002416D9650010682E /* Assignment 5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Assignment 5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		145CA7032416D9650010682E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		145CA7052416D9650010682E /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 			path = BackgroundTask;
 			sourceTree = "<group>";
 		};
+		14470B77244E8FE5005200B3 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				14470B74244E8F62005200B3 /* PlaceDatabase.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		145CA6F72416D9650010682E = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +94,7 @@
 				145CA7192416DFBE0010682E /* Model */,
 				145CA7162416D9980010682E /* Controllers */,
 				145CA7152416D9770010682E /* Views */,
+				14470B77244E8FE5005200B3 /* Database */,
 				145CA70A2416D9650010682E /* Assets.xcassets */,
 				145CA70C2416D9650010682E /* LaunchScreen.storyboard */,
 				145CA70F2416D9650010682E /* Info.plist */,
@@ -198,6 +209,7 @@
 				145CA71F241783AA0010682E /* Alert.swift in Sources */,
 				142AF089241BA19700767277 /* DialogCallBack.swift in Sources */,
 				145CA7182416DD040010682E /* PlaceListViewContoller.swift in Sources */,
+				14470B76244E8F62005200B3 /* PlaceDatabase.xcdatamodeld in Sources */,
 				140BD83B2419AA260097E9DB /* AddPlaceViewController.swift in Sources */,
 				1401455824284B460006BE76 /* PlaceCollectionAsyncTask.swift in Sources */,
 				14A6CDC9241C778C00CC6859 /* PlaceItemCellCustom.swift in Sources */,
@@ -402,6 +414,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		14470B74244E8F62005200B3 /* PlaceDatabase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14470B75244E8F62005200B3 /* PlaceDatabase.xcdatamodel */,
+			);
+			currentVersion = 14470B75244E8F62005200B3 /* PlaceDatabase.xcdatamodel */;
+			path = PlaceDatabase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 145CA6F82416D9650010682E /* Project object */;
 }
