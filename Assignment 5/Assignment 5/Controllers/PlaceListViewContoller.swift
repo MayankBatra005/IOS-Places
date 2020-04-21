@@ -26,6 +26,7 @@ class PlaceListViewController: UITableViewController {
     
     var placeselectedIndex = 0
     var modifiedPlace = PlaceDescription()
+    let db = PlaceDB()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,8 +107,11 @@ class PlaceListViewController: UITableViewController {
     
     
     private func deletePlace(){
-        PlaceLibrary.deletePlaceOnServer(placeName: PlaceLibrary.allremotePlaces[placeselectedIndex].placeName ?? "")
+        
+        let placeName: String = PlaceLibrary.allremotePlaces[placeselectedIndex].placeName ?? ""
+        PlaceLibrary.deletePlaceOnServer(placeName: placeName)
         PlaceLibrary.allremotePlaces.remove(at: placeselectedIndex)
+        db.deletePlace(placeName: placeName)
         refreshList()
 
     }
@@ -115,6 +119,7 @@ class PlaceListViewController: UITableViewController {
     private func addNewPlace(){
         PlaceLibrary.allremotePlaces.append(modifiedPlace)
         PlaceLibrary.addPlaceOnServer(place: modifiedPlace)
+        db.addPlace(place: modifiedPlace)
         self.tableView.reloadData()
     }
     
@@ -129,8 +134,7 @@ class PlaceListViewController: UITableViewController {
     
     public func initDataBase(){
         
-        let db = PlaceDB()
-        
+    
         db.getAllPlacesFromDatabase(vc: self)
         
 //        let mplace:PlaceDescription = PlaceDescription()
@@ -147,7 +151,6 @@ class PlaceListViewController: UITableViewController {
 //        db.deleteAllPlaces()
 //        db.getAllPlacesFromDatabase()
         
-        db.saveContext()
         
     }
     

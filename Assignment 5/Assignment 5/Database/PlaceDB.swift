@@ -69,22 +69,24 @@ class PlaceDB{
         placetable.setValue(place.elevation, forKey: "elevation")
         placetable.setValue(place.latitude, forKey: "latitude")
         placetable.setValue(place.longitude, forKey: "longitude")
+        saveContext()
     }
     
-    func deletePlace(place:PlaceDescription) -> Bool {
+    func deletePlace(placeName:String) -> Bool {
         
         var ret:Bool = false
         let selectRequest:NSFetchRequest<Place> = Place.fetchRequest()
-        selectRequest.predicate = NSPredicate(format:"name == %@",place.placeName!)
+        selectRequest.predicate = NSPredicate(format:"name == %@",placeName)
         
         do{
             let results = try context!.fetch(selectRequest)
             if results.count > 0 {
                 context!.delete(results[0] as NSManagedObject)
                 ret = true
+                saveContext()
             }
         } catch let error as NSError{
-            NSLog("error deleting student \(place.placeName). Error \(error)")
+            NSLog("error deleting student \(placeName). Error \(error)")
         }
         return ret
     }
