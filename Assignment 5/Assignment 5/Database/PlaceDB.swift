@@ -20,13 +20,22 @@ class PlaceDB{
         context = appDeledate!.persistentContainer.viewContext
     }
     
-    func getAllPlacesFromDatabase(){
+    func getAllPlacesFromDatabase(vc: UITableViewController){
         
         let fetchPlacesRequest:NSFetchRequest<Place> = Place.fetchRequest()
+        var places = Array<PlaceDescription>()
         
         do{
             let result = try context!.fetch(fetchPlacesRequest)
+            NSLog("Places loaded \(result.count)")
+            for place in result{
+                places.append(place as! PlaceDescription)
+            }
+            PlaceLibrary.allremotePlaces = places
+            vc.tableView.reloadData()
              NSLog("Places loaded \(result.count)")
+            
+            
             
         }catch let error as NSError{
             NSLog("Error fetching places \(error)")
@@ -46,6 +55,36 @@ class PlaceDB{
         placetable.setValue(place.latitude, forKey: "latitude")
         placetable.setValue(place.longitude, forKey: "longitude")
     }
+    
+    func deletePlace(place:PlaceDescription) -> Bool {
+        
+        var ret:Bool = false
+        let selectRequest:NSFetchRequest<Place> = Place.fetchRequest()
+        selectRequest.predicate = NSPredicate(format:"name == %@",place.placeName!)
+        
+        do{
+            let results = try context!.fetch(selectRequest)
+            if results.count > 0 {
+                context!.delete(results[0] as NSManagedObject)
+                ret = true
+            }
+        } catch let error as NSError{
+            NSLog("error deleting student \(place.placeName). Error \(error)")
+        }
+        return ret
+    }
+    
+//    func deleteAllPlaces(){
+//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Place")
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+//
+//        do {
+//            var myPersistentStoreCoordinator: NSPersistentStoreCoordinator
+//            try myPersistentStoreCoordinator.execute(deleteRequest, with: context)
+//        } catch let error as NSError {
+//            // TODO: handle the error
+//        }
+//    }
     
     func saveContext() -> Bool {
         var ret:Bool = false

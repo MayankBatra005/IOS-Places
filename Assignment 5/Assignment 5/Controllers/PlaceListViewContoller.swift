@@ -130,18 +130,22 @@ class PlaceListViewController: UITableViewController {
     public func initDataBase(){
         
         let db = PlaceDB()
-        let mplace:PlaceDescription = PlaceDescription()
-        mplace.placeName = "Delhh"
-        mplace.placeDescription = "It sthe capital"
-        mplace.category = "Hike"
-        mplace.streetAddress = "Street address"
-        mplace.streetTitle = "St title"
-        mplace.elevation = 200
-        mplace.latitude = 534.3
-        mplace.longitude = 433.7
         
-        db.addPlace(place: mplace)
-        db.getAllPlacesFromDatabase()
+        db.getAllPlacesFromDatabase(vc: self)
+        
+//        let mplace:PlaceDescription = PlaceDescription()
+//        mplace.placeName = "Delhh"
+//        mplace.placeDescription = "It sthe capital"
+//        mplace.category = "Hike"
+//        mplace.streetAddress = "Street address"
+//        mplace.streetTitle = "St title"
+//        mplace.elevation = 200
+//        mplace.latitude = 534.3
+//        mplace.longitude = 433.7
+//
+////        db.addPlace(place: mplace)
+//        db.deleteAllPlaces()
+//        db.getAllPlacesFromDatabase()
         
         db.saveContext()
         
