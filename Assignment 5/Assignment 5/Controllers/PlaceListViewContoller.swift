@@ -42,7 +42,7 @@ class PlaceListViewController: UITableViewController {
         nav?.tintColor = UIColor.white
     }
     
-    func loadListFromSource(){
+    func loadListFromServer(){
 
         PlaceLibrary.loadAllPlacesFromMemory(vc:self)
     }
@@ -107,6 +107,10 @@ class PlaceListViewController: UITableViewController {
         performSegue(withIdentifier: "AddPlaceSegue", sender: nil)
     }
     
+    @IBAction func syncWithServer(_ sender: Any) {
+        db.deleteAllPlaces()
+        PlaceLibrary.loadAllPlacesFromMemory(vc: self)
+    }
     
     private func deletePlace(){
         

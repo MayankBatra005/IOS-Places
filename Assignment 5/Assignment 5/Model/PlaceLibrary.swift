@@ -41,6 +41,8 @@ class PlaceLibrary{
     
     private static func loadPlaceinPlaceList(placeName: String, vc: UIViewController){
         let connection: PlaceCollectionAsyncTask = PlaceCollectionAsyncTask(urlString: urlString)
+        let db = PlaceDB()
+        
         connection.get(name: placeName, callback: {(res: String, err: String?) -> Void in
             
             if err != nil{
@@ -54,7 +56,11 @@ class PlaceLibrary{
                         if let jsonObject = try JSONSerialization.jsonObject(with: data, options : []) as? [String: Any]{
                             
                             let placeDetail = jsonObject["result"] as? [String:Any]
-                            allremotePlaces.append(getPlaceDescFromJson(jsonObject: placeDetail ?? ["":nil]))
+                            
+                            let place: PlaceDescription = getPlaceDescFromJson(jsonObject: placeDetail ?? ["":nil])
+                            
+                            allremotePlaces.append(place)
+                            db.addPlace(place: place)
                             
                         } else {
                             print("bad json")

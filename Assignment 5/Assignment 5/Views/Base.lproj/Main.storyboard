@@ -181,11 +181,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="TKz-hi-mZX">
-                        <barButtonItem key="rightBarButtonItem" title="Add Place" image="add" id="r7I-2S-lnZ">
-                            <connections>
-                                <action selector="addNewPlace:" destination="zTR-1A-DaV" id="xPW-AF-wsK"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Add Place" image="add" id="r7I-2S-lnZ">
+                                <connections>
+                                    <action selector="addNewPlace:" destination="zTR-1A-DaV" id="xPW-AF-wsK"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="OFD-Z2-Us2">
+                                <connections>
+                                    <action selector="syncWithServer:" destination="zTR-1A-DaV" id="Rbi-JL-i42"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="PlaceDetailSegue" id="zSB-hV-2mS"/>
@@ -194,7 +201,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJQ-O1-RCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="311.59420289855075" y="-577.23214285714278"/>
+            <point key="canvasLocation" x="26" y="-569"/>
         </scene>
         <!--Add Place View Controller-->
         <scene sceneID="c5J-j8-AYc">

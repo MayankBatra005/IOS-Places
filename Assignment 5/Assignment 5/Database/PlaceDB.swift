@@ -71,6 +71,13 @@ class PlaceDB{
         saveContext()
     }
     
+    // Improve
+    func addAllPlacesToDatabase(places: Array<PlaceDescription>){
+        for place in places{
+            addPlace(place: place)
+        }
+    }
+    
     func updatePlace(oldName: String, place: PlaceDescription) {
         
         NSLog("updating place \(oldName)")
