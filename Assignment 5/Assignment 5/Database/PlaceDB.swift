@@ -5,7 +5,6 @@
 //  Created by Rohit  on 20/04/20.
 //  Copyright © 2020 Rohit . All rights reserved.
 //
-
 import Foundation
 import CoreData
 import UIKit
@@ -70,6 +69,34 @@ class PlaceDB{
         placetable.setValue(place.latitude, forKey: "latitude")
         placetable.setValue(place.longitude, forKey: "longitude")
         saveContext()
+    }
+    
+    func updatePlace(oldName: String, place: PlaceDescription) {
+        
+        NSLog("updating place \(oldName)")
+        let selectRequest:NSFetchRequest<Place> = Place.fetchRequest()
+        selectRequest.predicate = NSPredicate(format:"name == %@",oldName)
+        
+        do{
+            let results = try context!.fetch(selectRequest)
+             NSLog("result \(results.count)")
+            if results.count > 0 {
+                let objectUpdate = results[0] as! NSManagedObject
+                objectUpdate.setValue(place.placeName, forKey: "name")
+                objectUpdate.setValue(place.placeDescription, forKey: "desc")
+                objectUpdate.setValue(place.category, forKey: "category")
+                objectUpdate.setValue(place.streetTitle, forKey: "street_title")
+                objectUpdate.setValue(place.streetAddress, forKey: "street_address")
+                objectUpdate.setValue(place.elevation, forKey: "elevation")
+                objectUpdate.setValue(place.latitude, forKey: "latitude")
+                objectUpdate.setValue(place.longitude, forKey: "longitude")
+                NSLog("updating place \(place.placeName)")
+                saveContext()
+            }
+        } catch let error as NSError{
+            NSLog("error updating place \(place.placeName). Error \(error)")
+        }
+        
     }
     
     func deletePlace(placeName:String) -> Bool {

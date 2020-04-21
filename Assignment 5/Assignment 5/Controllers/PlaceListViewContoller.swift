@@ -27,6 +27,7 @@ class PlaceListViewController: UITableViewController {
     var placeselectedIndex = 0
     var modifiedPlace = PlaceDescription()
     let db = PlaceDB()
+    var selectedPlaceName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +78,7 @@ class PlaceListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let place = PlaceLibrary.allremotePlaces[indexPath.row]
         placeselectedIndex = indexPath.row
+        selectedPlaceName = place.placeName
         performSegue(withIdentifier: "PlaceDetailSegue", sender: place)
     }
     
@@ -124,7 +126,9 @@ class PlaceListViewController: UITableViewController {
     }
     
     private func modifyPlace(){
+        print("updating")
         PlaceLibrary.allremotePlaces[placeselectedIndex] = modifiedPlace
+        db.updatePlace(oldName: selectedPlaceName!, place: modifiedPlace)
         self.tableView.reloadData()
     }
     
