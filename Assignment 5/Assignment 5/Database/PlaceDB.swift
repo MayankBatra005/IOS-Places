@@ -118,17 +118,30 @@ class PlaceDB{
         return ret
     }
     
-//    func deleteAllPlaces(){
+    func deleteAllPlaces(){
+        
+        let fetchRequest: NSFetchRequest<Place>  = Place.fetchRequest()
+        
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
+        
+        do {
+            try context!.execute(batchDeleteRequest)
+            
+        } catch {
+            // Error Handling
+        }
+        
+        saveContext()
 //        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Place")
 //        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 //
 //        do {
 //            var myPersistentStoreCoordinator: NSPersistentStoreCoordinator
-//            try myPersistentStoreCoordinator.execute(deleteRequest, with: context)
+//            try myPersistentStoreCoordinator.execute(deleteRequest, with: context!)
 //        } catch let error as NSError {
 //            // TODO: handle the error
 //        }
-//    }
+    }
     
     func saveContext() -> Bool {
         var ret:Bool = false

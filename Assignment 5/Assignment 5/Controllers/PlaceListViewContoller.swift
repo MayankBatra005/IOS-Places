@@ -138,7 +138,6 @@ class PlaceListViewController: UITableViewController {
     
     public func initDataBase(){
         
-    
         db.getAllPlacesFromDatabase(vc: self)
         
 //        let mplace:PlaceDescription = PlaceDescription()
