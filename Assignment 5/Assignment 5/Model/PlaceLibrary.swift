@@ -177,4 +177,9 @@ class PlaceLibrary{
         })
     }
     
+    static func updatePlaceOnServer(oldName: String, modifiedObject: PlaceDescription){
+        deletePlaceOnServer(placeName: oldName)
+        addPlaceOnServer(place: modifiedObject)
+    }
+    
 }

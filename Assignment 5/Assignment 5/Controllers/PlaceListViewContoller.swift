@@ -133,6 +133,7 @@ class PlaceListViewController: UITableViewController {
     private func modifyPlace(){
         print("updating")
         PlaceLibrary.allremotePlaces[placeselectedIndex] = modifiedPlace
+        PlaceLibrary.updatePlaceOnServer(oldName: selectedPlaceName!, modifiedObject: modifiedPlace)
         db.updatePlace(oldName: selectedPlaceName!, place: modifiedPlace)
         self.tableView.reloadData()
     }
