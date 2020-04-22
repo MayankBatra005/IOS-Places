@@ -48,7 +48,7 @@ class PlaceLibrary{
             if err != nil{
                 NSLog(err!)
             }else{
-                NSLog(res)
+//                NSLog(res)
                 if let data: Data = res.data(using: String.Encoding.utf8){
                     
                     
@@ -73,6 +73,8 @@ class PlaceLibrary{
             
             placeParced = placeParced+1
             
+            print(placeParced.description + " " + listSize.description)
+            
             if(placeParced==listSize){
                 let placeListVC = vc as! PlaceListViewController
                 placeListVC.refreshList()
@@ -84,12 +86,13 @@ class PlaceLibrary{
     static func getAllPlacesFromServer(vc : UIViewController){
         
         let connection: PlaceCollectionAsyncTask = PlaceCollectionAsyncTask(urlString: urlString)
+        placeParced = 0
         
         connection.getNames(callback: { (res: String, err: String?) -> Void in
             if err != nil {
                 NSLog(err!)
             }else{
-                NSLog(res)
+//                NSLog(res)
                 if let data: Data = res.data(using: String.Encoding.utf8){
                     
                     do {

@@ -109,6 +109,7 @@ class PlaceListViewController: UITableViewController {
     
     @IBAction func syncWithServer(_ sender: Any) {
         db.deleteAllPlaces()
+        PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
         PlaceLibrary.loadAllPlacesFromMemory(vc: self)
     }
     
