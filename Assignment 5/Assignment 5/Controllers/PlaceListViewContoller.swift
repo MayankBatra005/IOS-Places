@@ -29,11 +29,22 @@ class PlaceListViewController: UITableViewController {
     let db = PlaceDB()
     var selectedPlaceName: String?
     
+    var isRefeshing:Bool = false;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSwipeToRefersh()
         initDataBase()
-//        loadListFromSource()
         setCustomizedNavBar()
+    }
+    
+    private func setupSwipeToRefersh(){
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(sync), for: .valueChanged)
+        self.refreshControl = refreshControl
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        refreshControl.attributedTitle = NSAttributedString(string: "Syncing with server")
     }
     
     func setCustomizedNavBar(){
@@ -61,11 +72,14 @@ class PlaceListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-        let place = PlaceLibrary.allremotePlaces[indexPath.row]
+
         let customCell = tableView.dequeueReusableCell(withIdentifier: "PlaceListIdentifier", for: indexPath) as! PlaceItemCellCustom
         
-        customCell.setView(place: place)
-    
+        if !self.isRefeshing{
+            let place = PlaceLibrary.allremotePlaces[indexPath.row]
+            customCell.setView(place: place)
+        }
+        
         return customCell
     }
     
@@ -76,10 +90,15 @@ class PlaceListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let place = PlaceLibrary.allremotePlaces[indexPath.row]
-        placeselectedIndex = indexPath.row
-        selectedPlaceName = place.placeName
-        performSegue(withIdentifier: "PlaceDetailSegue", sender: place)
+        
+        
+        
+            let place = PlaceLibrary.allremotePlaces[indexPath.row]
+            placeselectedIndex = indexPath.row
+            selectedPlaceName = place.placeName
+            performSegue(withIdentifier: "PlaceDetailSegue", sender: place)
+    
+       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -108,6 +127,11 @@ class PlaceListViewController: UITableViewController {
     }
     
     @IBAction func syncWithServer(_ sender: Any) {
+        sync()
+    }
+    
+    @objc private func sync()  {
+        isRefeshing = true;
         db.deleteAllPlaces()
         PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
         PlaceLibrary.loadAllPlacesFromMemory(vc: self)
@@ -139,7 +163,9 @@ class PlaceListViewController: UITableViewController {
     }
     
     public func refreshList(){
+        isRefeshing = false;
         self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
     public func initDataBase(){
