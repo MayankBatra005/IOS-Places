@@ -29,8 +29,13 @@ class PlaceListViewController: UITableViewController {
     let db = PlaceDB()
     var selectedPlaceName: String?
     
+    // This is a check condition for swipe to refresh
     var isRefeshing:Bool = false;
     
+    
+    /**********************************************************************************************************************
+                                        Life cycle methods
+     **********************************************************************************************************************/
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSwipeToRefersh()
@@ -38,26 +43,9 @@ class PlaceListViewController: UITableViewController {
         setCustomizedNavBar()
     }
     
-    private func setupSwipeToRefersh(){
-        
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(sync), for: .valueChanged)
-        self.refreshControl = refreshControl
-        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
-        refreshControl.attributedTitle = NSAttributedString(string: "Syncing with server")
-    }
-    
-    func setCustomizedNavBar(){
-        let nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.blackOpaque
-        nav?.tintColor = UIColor.white
-    }
-    
-    func loadListFromServer(){
-
-        PlaceLibrary.loadAllPlacesFromMemory(vc:self)
-    }
-    
+    /**********************************************************************************************************************
+                                        UITable View methods
+     **********************************************************************************************************************/
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -71,18 +59,13 @@ class PlaceListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-
         let customCell = tableView.dequeueReusableCell(withIdentifier: "PlaceListIdentifier", for: indexPath) as! PlaceItemCellCustom
-        
         if !self.isRefeshing{
             let place = PlaceLibrary.allremotePlaces[indexPath.row]
             customCell.setView(place: place)
         }
-        
         return customCell
     }
-    
     
     // Set the spacing between sections
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -90,19 +73,16 @@ class PlaceListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        
             let place = PlaceLibrary.allremotePlaces[indexPath.row]
             placeselectedIndex = indexPath.row
             selectedPlaceName = place.placeName
             performSegue(withIdentifier: "PlaceDetailSegue", sender: place)
-    
-       
     }
     
+    /**********************************************************************************************************************
+                                        Segue methods
+     **********************************************************************************************************************/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if(segue.identifier == "PlaceDetailSegue"){
             let placedetailViewContoller = segue.destination as! PlaceDetailViewController
             placedetailViewContoller.currentPlace = sender as? PlaceDescription
@@ -111,7 +91,6 @@ class PlaceListViewController: UITableViewController {
     
     @IBAction func unwindToPlaceListVC(segue: UIStoryboardSegue) {
         
-        print("This is before if condition")
         if(segue.identifier=="gobacktoPlaceList"){
            deletePlace()
         }else if(segue.identifier=="SaveAddPlace"){
@@ -122,6 +101,9 @@ class PlaceListViewController: UITableViewController {
         }
     }
     
+    /**********************************************************************************************************************
+                                        IBActions
+     **********************************************************************************************************************/
     @IBAction func addNewPlace(_ sender: Any) {
         performSegue(withIdentifier: "AddPlaceSegue", sender: nil)
     }
@@ -130,21 +112,15 @@ class PlaceListViewController: UITableViewController {
         sync()
     }
     
+    
+    /**********************************************************************************************************************
+                                        Private helper methods
+     **********************************************************************************************************************/
     @objc private func sync()  {
         isRefeshing = true;
         db.deleteAllPlaces()
         PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
         PlaceLibrary.loadAllPlacesFromMemory(vc: self)
-    }
-    
-    private func deletePlace(){
-        
-        let placeName: String = PlaceLibrary.allremotePlaces[placeselectedIndex].placeName ?? ""
-        PlaceLibrary.deletePlaceOnServer(placeName: placeName)
-        PlaceLibrary.allremotePlaces.remove(at: placeselectedIndex)
-        db.deletePlace(placeName: placeName)
-        refreshList()
-
     }
     
     private func addNewPlace(){
@@ -162,31 +138,40 @@ class PlaceListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    private func deletePlace(){
+        let placeName: String = PlaceLibrary.allremotePlaces[placeselectedIndex].placeName ?? ""
+        PlaceLibrary.deletePlaceOnServer(placeName: placeName)
+        PlaceLibrary.allremotePlaces.remove(at: placeselectedIndex)
+        db.deletePlace(placeName: placeName)
+        refreshList()
+    }
+    
+    private  func initDataBase(){
+        db.getAllPlacesFromDatabase(vc: self)
+    }
+    
     public func refreshList(){
         isRefeshing = false;
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
     
-    public func initDataBase(){
-        
-        db.getAllPlacesFromDatabase(vc: self)
-        
-//        let mplace:PlaceDescription = PlaceDescription()
-//        mplace.placeName = "Delhh"
-//        mplace.placeDescription = "It sthe capital"
-//        mplace.category = "Hike"
-//        mplace.streetAddress = "Street address"
-//        mplace.streetTitle = "St title"
-//        mplace.elevation = 200
-//        mplace.latitude = 534.3
-//        mplace.longitude = 433.7
-//
-////        db.addPlace(place: mplace)
-//        db.deleteAllPlaces()
-//        db.getAllPlacesFromDatabase()
-        
-        
+    private func setupSwipeToRefersh(){
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(sync), for: .valueChanged)
+        self.refreshControl = refreshControl
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        refreshControl.attributedTitle = NSAttributedString(string: "Syncing with server")
+    }
+    
+    private func setCustomizedNavBar(){
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.blackOpaque
+        nav?.tintColor = UIColor.white
+    }
+    
+    private func loadListFromServer(){
+        PlaceLibrary.loadAllPlacesFromMemory(vc:self)
     }
     
 }

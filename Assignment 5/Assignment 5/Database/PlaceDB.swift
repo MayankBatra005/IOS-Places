@@ -1,10 +1,22 @@
-//
-//  PlaceDB.swift
-//  Assignment 5
-//
-//  Created by Rohit  on 20/04/20.
-//  Copyright © 2020 Rohit . All rights reserved.
-//
+/*
+ * Copyright 2020 Rohit Kumar Singh,
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @author Rohit Kumar Singh rsingh92@asu.edu
+ *
+ * @version April 2016
+ */
 import Foundation
 import CoreData
 import UIKit
@@ -28,7 +40,6 @@ class PlaceDB{
             let results = try context!.fetch(fetchPlacesRequest)
             NSLog("Places loaded \(results.count)")
             for result in results{
-//                places.append(place as! PlaceDescription)
                 let place: PlaceDescription = PlaceDescription()
                 place.placeName = (result as AnyObject).value(forKey:"name") as? String
                 place.placeDescription = (result as AnyObject).value(forKey:"desc") as? String
@@ -38,24 +49,17 @@ class PlaceDB{
                 place.elevation = (result as AnyObject).value(forKey:"elevation") as? Double
                 place.latitude = (result as AnyObject).value(forKey:"latitude") as? Double
                 place.longitude = (result as AnyObject).value(forKey:"longitude") as? Double
-                
                 places.append(place)
-                
             }
             
             PlaceLibrary.allremotePlaces = places
             vc.tableView.reloadData()
              NSLog("Places loaded \(results.count)")
             
-            
-            
         }catch let error as NSError{
             NSLog("Error fetching places \(error)")
         }
-        
     }
-    
-    
     
     func addPlace(place: PlaceDescription){
         let entity = NSEntityDescription.entity(forEntityName: "Place", in: context!)
@@ -139,15 +143,7 @@ class PlaceDB{
         }
         
         saveContext()
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Place")
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//
-//        do {
-//            var myPersistentStoreCoordinator: NSPersistentStoreCoordinator
-//            try myPersistentStoreCoordinator.execute(deleteRequest, with: context!)
-//        } catch let error as NSError {
-//            // TODO: handle the error
-//        }
+
     }
     
     func saveContext() -> Bool {
@@ -161,5 +157,3 @@ class PlaceDB{
         return ret
     }
 }
-
-
