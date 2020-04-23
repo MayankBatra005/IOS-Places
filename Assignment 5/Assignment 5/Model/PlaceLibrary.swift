@@ -88,11 +88,17 @@ class PlaceLibrary{
         let connection: PlaceCollectionAsyncTask = PlaceCollectionAsyncTask(urlString: urlString)
         placeParced = 0
         
+        let placeListVC = vc as! PlaceListViewController
+        
+        
         connection.getNames(callback: { (res: String, err: String?) -> Void in
             if err != nil {
-                NSLog(err!)
+                placeListVC.syncProgress(connectionSuccess: false)
             }else{
 //                NSLog(res)
+                
+                placeListVC.syncProgress(connectionSuccess: true)
+                print("Not Error erororoororororor")
                 if let data: Data = res.data(using: String.Encoding.utf8){
                     
                     do {

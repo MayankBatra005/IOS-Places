@@ -116,11 +116,24 @@ class PlaceListViewController: UITableViewController {
     /**********************************************************************************************************************
                                         Private helper methods
      **********************************************************************************************************************/
-    @objc private func sync()  {
+    @objc private func syncinit()  {
         isRefeshing = true;
-        db.deleteAllPlaces()
-        PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
+        
+//        PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
         PlaceLibrary.loadAllPlacesFromMemory(vc: self)
+    }
+    
+    public func syncProgress(connectionSuccess: Bool){
+        if connectionSuccess{
+            PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
+            db.deleteAllPlaces()
+        }else{
+            syncEnd()
+        }
+    }
+    
+    public func syncEnd(){
+        refreshList()
     }
     
     private func addNewPlace(){
@@ -158,7 +171,7 @@ class PlaceListViewController: UITableViewController {
     
     private func setupSwipeToRefersh(){
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(sync), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(syncinit), for: .valueChanged)
         self.refreshControl = refreshControl
         refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         refreshControl.attributedTitle = NSAttributedString(string: "Syncing with server")
