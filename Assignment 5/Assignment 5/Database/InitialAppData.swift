@@ -1,10 +1,22 @@
-//
-//  InitialAppData.swift
-//  Assignment 5
-//
-//  Created by Rohit  on 25/04/20.
-//  Copyright © 2020 Rohit . All rights reserved.
-//
+/*
+ * Copyright 2020 Rohit Kumar Singh,
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @author Rohit Kumar Singh rsingh92@asu.edu
+ *
+ * @version April 2016
+ */
 
 import Foundation
 import UIKit
@@ -49,10 +61,10 @@ class InitialAppData{
     func getInitailData()->PlaceDescription{
         let place: PlaceDescription = PlaceDescription()
         place.placeName = "ASU-Poly"
-        place.placeDescription = "kajsa"
+        place.placeDescription = "Home of ASUs Software Engineering Programs"
         place.category = "School"
-        place.streetTitle = "sssd"
-        place.streetAddress = "dsds"
+        place.streetTitle = "ASU Software Engineering"
+        place.streetAddress = "7171 E Sonoran Arroyo Mall$Peralta Hall 230$Mesa AZ 85212"
         place.elevation = 1300
         place.latitude = 33.306388
         place.longitude = -111.679121

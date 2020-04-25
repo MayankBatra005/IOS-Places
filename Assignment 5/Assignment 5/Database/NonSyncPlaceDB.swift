@@ -1,10 +1,22 @@
-//
-//  NonSyncPlaceDB.swift
-//  Assignment 5
-//
-//  Created by Rohit  on 24/04/20.
-//  Copyright © 2020 Rohit . All rights reserved.
-//
+/*
+ * Copyright 2020 Rohit Kumar Singh,
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @author Rohit Kumar Singh rsingh92@asu.edu
+ *
+ * @version April 2016
+ */
 
 import Foundation
 import CoreData
@@ -100,11 +112,6 @@ class NonSyncPlace{
         }
         
         deleteAllPlaces()
-        
-        print("Finished pushing nonsync places")
-        
-        //connectionCallback.nonSyncPlacesPused()
-        // Callback when the
     }
     
     public func searchPlace(placeName:String) -> PlaceDescription{
@@ -124,62 +131,6 @@ class NonSyncPlace{
         return defaultPlace
         
     }
-    
-    
-    
-    
-    
-//    public func delete(name: String) ->Bool{
-//
-//        var ret:Bool = false
-//
-//        let selectRequest:NSFetchRequest<TempPlace> = TempPlace.fetchRequest()
-//        selectRequest.predicate = NSPredicate(format:"name == %@",name)
-//
-//        do{
-//            let results = try context!.fetch(selectRequest)
-//            if results.count > 0 {
-//                context!.delete(results[0] as NSManagedObject)
-//                ret = true
-//                saveContext()
-//            }
-//        } catch let error as NSError{
-//            NSLog("error deleting student \(name). Error \(error)")
-//        }
-//
-//        print("Recorded delete action in temp data")
-//
-//        return ret
-//    }
-    
-    
-//    public func saveInRecord(name: String, action: String) ->Bool{
-//
-//        var ret:Bool = false
-//
-//        if (action == "ADD"){
-//            add(name: name, action: action)
-//        }else{
-//
-//        }
-//
-//        let selectRequest:NSFetchRequest<TempPlace> = TempPlace.fetchRequest()
-//        selectRequest.predicate = NSPredicate(format:"name == %@",name)
-//
-//        do{
-//            let results = try context!.fetch(selectRequest)
-//            if results.count > 0 {
-//                context!.delete(results[0] as NSManagedObject)
-//                ret = true
-//                saveContext()
-//            }
-//        } catch let error as NSError{
-//            NSLog("error deleting student \(name). Error \(error)")
-//        }
-//
-//        return ret
-//    }
-    
     
     func saveContext() -> Bool {
         var ret:Bool = false
