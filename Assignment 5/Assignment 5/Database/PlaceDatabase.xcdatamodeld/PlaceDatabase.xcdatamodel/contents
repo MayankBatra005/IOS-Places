@@ -10,7 +10,12 @@
         <attribute name="street_address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="street_title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="TempPlace" representedClassName="TempPlace" syncable="YES" codeGenerationType="class">
+        <attribute name="place_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sync_action" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Place" positionX="-27" positionY="18" width="128" height="165"/>
+        <element name="Place" positionX="-571.30859375" positionY="-53.7109375" width="128" height="165"/>
+        <element name="TempPlace" positionX="-27" positionY="81" width="128" height="75"/>
     </elements>
 </model>

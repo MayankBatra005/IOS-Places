@@ -75,11 +75,13 @@ public class PlaceCollectionAsyncTask {
     
     func getNames(callback: @escaping (String, String?) -> Void) -> Bool{
         var ret:Bool = false
+        print("Here get1")
         PlaceCollectionAsyncTask.id = PlaceCollectionAsyncTask.id + 1
         do {
             let dict:[String:Any] = ["jsonrpc":"2.0", "method":"getNames", "params":[ ], "id":PlaceCollectionAsyncTask.id]
             let reqData:Data = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions(rawValue: 0))
             self.asyncHttpPostJSON(url: self.url, data: reqData, completion: callback)
+            print("Here get2")
             ret = true
         } catch let error as NSError {
             print(error)

@@ -31,6 +31,8 @@ class PlaceLibrary{
 
     
     static func loadAllPlacesFromMemory(vc: UIViewController){
+        allremotePlaces = Array<PlaceDescription>()
+        print("Here 1.1" + allremotePlaces.count.description)
         getAllPlacesFromServer(vc: vc)
     }
     
@@ -58,9 +60,11 @@ class PlaceLibrary{
                             let placeDetail = jsonObject["result"] as? [String:Any]
                             
                             let place: PlaceDescription = getPlaceDescFromJson(jsonObject: placeDetail ?? ["":nil])
-                            
+                            print("Here 6")
                             allremotePlaces.append(place)
+                            print("Here 7")
                             db.addPlace(place: place)
+                            print("Here 8")
                             
                         } else {
                             print("bad json")
@@ -73,7 +77,7 @@ class PlaceLibrary{
             
             placeParced = placeParced+1
             
-            print(placeParced.description + " " + listSize.description)
+           print(placeParced.description + " " + listSize.description)
             
             if(placeParced==listSize){
                 let placeListVC = vc as! PlaceListViewController
@@ -84,21 +88,22 @@ class PlaceLibrary{
     }
     
     static func getAllPlacesFromServer(vc : UIViewController){
-        
+        print("Here 2")
         let connection: PlaceCollectionAsyncTask = PlaceCollectionAsyncTask(urlString: urlString)
+        print("Here 2.1")
         placeParced = 0
-        
-        let placeListVC = vc as! PlaceListViewController
         
         
         connection.getNames(callback: { (res: String, err: String?) -> Void in
+            
             if err != nil {
-                placeListVC.syncProgress(connectionSuccess: false)
+                 print("Here 2.2e")
+//                placeListVC.syncProgress(connectionSuccess: false)
             }else{
-//                NSLog(res)
-                
-                placeListVC.syncProgress(connectionSuccess: true)
-                print("Not Error erororoororororor")
+                NSLog(res)
+                 print("Here 2.2")
+//                placeListVC.syncProgress(connectionSuccess: true)
+                print("Here 3")
                 if let data: Data = res.data(using: String.Encoding.utf8){
                     
                     do {
@@ -110,6 +115,7 @@ class PlaceLibrary{
                             listSize = placeNamesArray.count
                             
                             for placeName in placeNamesArray{
+                                print("Here 4 "+placeName)
                                 loadPlaceinPlaceList(placeName: placeName, vc: vc)
                             }
                             
@@ -157,12 +163,13 @@ class PlaceLibrary{
         return dict
     }
     
-    static func deletePlaceOnServer(placeName: String){
+    static func deletePlaceOnServer(placeName: String, connectionCallback: ConnectionStatus){
         let connection = PlaceCollectionAsyncTask(urlString: urlString)
         connection.remove(placeName: placeName, callback: {(res: String, err: String?) -> Void in
             
             if err != nil {
                 NSLog(err!)
+                connectionCallback.connectionFailed(placeName: placeName, actionName: "DELETE")
             }else{
                 print("Deleted")
                 print(res)
@@ -171,11 +178,12 @@ class PlaceLibrary{
         })
     }
     
-    static func addPlaceOnServer(place: PlaceDescription){
+    static func addPlaceOnServer(place: PlaceDescription, connectionCallback: ConnectionStatus){
         let connection = PlaceCollectionAsyncTask(urlString: urlString)
         connection.add(place: place, callback: {(res: String, err: String?) -> Void in
             if err != nil {
                 NSLog(err!)
+                connectionCallback.connectionFailed(placeName: place.placeName!, actionName: "ADD")
             }else{
                 print("Added")
                 print(res)
@@ -183,9 +191,25 @@ class PlaceLibrary{
         })
     }
     
-    static func updatePlaceOnServer(oldName: String, modifiedObject: PlaceDescription){
-        deletePlaceOnServer(placeName: oldName)
-        addPlaceOnServer(place: modifiedObject)
+    static func updatePlaceOnServer(oldName: String, modifiedObject: PlaceDescription, connectionCallback: ConnectionStatus){
+        deletePlaceOnServer(placeName: oldName, connectionCallback: connectionCallback)
+        addPlaceOnServer(place: modifiedObject, connectionCallback: connectionCallback)
+    }
+    
+    
+    static func checkServerConnection(connectionCallback: ServerChecker){
+        
+        let connection = PlaceCollectionAsyncTask(urlString: urlString)
+        connection.remove(placeName: "DEFAULTSERVERPLACE763432", callback: {(res: String, err: String?) -> Void in
+            
+            if err != nil {
+                NSLog(err!)
+                connectionCallback.notconnected()
+            }else{
+                connectionCallback.isconnected()
+            }
+            
+        })
     }
     
 }

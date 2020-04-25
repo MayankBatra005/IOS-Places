@@ -22,11 +22,12 @@
 import Foundation
 import UIKit
 
-class PlaceListViewController: UITableViewController {
+class PlaceListViewController: UITableViewController, ConnectionStatus, ServerChecker {
     
     var placeselectedIndex = 0
     var modifiedPlace = PlaceDescription()
     let db = PlaceDB()
+    let tempDb = NonSyncPlace()
     var selectedPlaceName: String?
     
     // This is a check condition for swipe to refresh
@@ -41,6 +42,9 @@ class PlaceListViewController: UITableViewController {
         setupSwipeToRefersh()
         initDataBase()
         setCustomizedNavBar()
+        
+        tempDb.getAllNonSyncState()
+        
     }
     
     /**********************************************************************************************************************
@@ -112,6 +116,21 @@ class PlaceListViewController: UITableViewController {
         sync()
     }
     
+    /**********************************************************************************************************************
+                                        Callbacks
+     **********************************************************************************************************************/
+    func connectionFailed(placeName: String, actionName: String) {
+        
+        tempDb.add(name: placeName, action: actionName)
+        
+    }
+    
+    
+    func nonSyncPlacesPused() {
+        print("Non synced places pushed")
+        PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
+        db.deleteAllPlaces()
+    }
     
     /**********************************************************************************************************************
                                         Private helper methods
@@ -125,8 +144,8 @@ class PlaceListViewController: UITableViewController {
     
     public func syncProgress(connectionSuccess: Bool){
         if connectionSuccess{
-            PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
-            db.deleteAllPlaces()
+            tempDb.pushPendingToserver(connectionCallback: self)
+            
         }else{
             syncEnd()
         }
@@ -138,7 +157,7 @@ class PlaceListViewController: UITableViewController {
     
     private func addNewPlace(){
         PlaceLibrary.allremotePlaces.append(modifiedPlace)
-        PlaceLibrary.addPlaceOnServer(place: modifiedPlace)
+        PlaceLibrary.addPlaceOnServer(place: modifiedPlace, connectionCallback: self)
         db.addPlace(place: modifiedPlace)
         self.tableView.reloadData()
     }
@@ -146,14 +165,14 @@ class PlaceListViewController: UITableViewController {
     private func modifyPlace(){
         print("updating")
         PlaceLibrary.allremotePlaces[placeselectedIndex] = modifiedPlace
-        PlaceLibrary.updatePlaceOnServer(oldName: selectedPlaceName!, modifiedObject: modifiedPlace)
+        PlaceLibrary.updatePlaceOnServer(oldName: selectedPlaceName!, modifiedObject: modifiedPlace, connectionCallback: self)
         db.updatePlace(oldName: selectedPlaceName!, place: modifiedPlace)
         self.tableView.reloadData()
     }
     
     private func deletePlace(){
         let placeName: String = PlaceLibrary.allremotePlaces[placeselectedIndex].placeName ?? ""
-        PlaceLibrary.deletePlaceOnServer(placeName: placeName)
+        PlaceLibrary.deletePlaceOnServer(placeName: placeName, connectionCallback: self)
         PlaceLibrary.allremotePlaces.remove(at: placeselectedIndex)
         db.deletePlace(placeName: placeName)
         refreshList()
@@ -171,7 +190,7 @@ class PlaceListViewController: UITableViewController {
     
     private func setupSwipeToRefersh(){
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(syncinit), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(serverSyncStart), for: .valueChanged)
         self.refreshControl = refreshControl
         refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         refreshControl.attributedTitle = NSAttributedString(string: "Syncing with server")
@@ -185,6 +204,31 @@ class PlaceListViewController: UITableViewController {
     
     private func loadListFromServer(){
         PlaceLibrary.loadAllPlacesFromMemory(vc:self)
+    }
+    
+    
+    
+    
+    
+    
+    //////
+    @objc private func serverSyncStart(){
+        isRefeshing = true;
+        PlaceLibrary.checkServerConnection(connectionCallback: self)
+    }
+    
+    func isconnected() {
+        print("Server Connected")
+        tempDb.pushPendingToserver(connectionCallback: self)
+//        PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
+        db.deleteAllPlaces()
+        PlaceLibrary.loadAllPlacesFromMemory(vc: self)
+        
+    }
+    
+    func notconnected() {
+        print("Server not connected")
+        syncEnd()
     }
     
 }

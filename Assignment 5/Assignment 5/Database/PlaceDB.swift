@@ -143,6 +143,7 @@ class PlaceDB{
         }
         
         saveContext()
+        print("Finished deleting all places")
 
     }
     

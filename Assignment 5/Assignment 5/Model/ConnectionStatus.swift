@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+protocol ConnectionStatus {
+    func connectionFailed(placeName:String, actionName: String)
+    func nonSyncPlacesPused();
+}
