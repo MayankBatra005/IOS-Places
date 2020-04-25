@@ -26,6 +26,7 @@
 		14A6CDC9241C778C00CC6859 /* PlaceItemCellCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6CDC8241C778C00CC6859 /* PlaceItemCellCustom.swift */; };
 		14BD25322452CA980001A4CE /* NonSyncPlaceDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD25312452CA980001A4CE /* NonSyncPlaceDB.swift */; };
 		14BD2534245432D10001A4CE /* ServerChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD2533245432D10001A4CE /* ServerChecker.swift */; };
+		14BD25362454D57D0001A4CE /* InitialAppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD25352454D57D0001A4CE /* InitialAppData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		14A6CDC8241C778C00CC6859 /* PlaceItemCellCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceItemCellCustom.swift; sourceTree = "<group>"; };
 		14BD25312452CA980001A4CE /* NonSyncPlaceDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonSyncPlaceDB.swift; sourceTree = "<group>"; };
 		14BD2533245432D10001A4CE /* ServerChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerChecker.swift; sourceTree = "<group>"; };
+		14BD25352454D57D0001A4CE /* InitialAppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialAppData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				14470B74244E8F62005200B3 /* PlaceDatabase.xcdatamodeld */,
 				14470B78244E93F8005200B3 /* PlaceDB.swift */,
 				14BD25312452CA980001A4CE /* NonSyncPlaceDB.swift */,
+				14BD25352454D57D0001A4CE /* InitialAppData.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				14BD2534245432D10001A4CE /* ServerChecker.swift in Sources */,
 				14A6CDC9241C778C00CC6859 /* PlaceItemCellCustom.swift in Sources */,
 				145CA7062416D9650010682E /* PlaceDetailViewController.swift in Sources */,
+				14BD25362454D57D0001A4CE /* InitialAppData.swift in Sources */,
 				145CA71B2416DFD90010682E /* PlaceDescription.swift in Sources */,
 				145CA71D2416E0E70010682E /* PlaceLibrary.swift in Sources */,
 				145CA7042416D9650010682E /* AppDelegate.swift in Sources */,
