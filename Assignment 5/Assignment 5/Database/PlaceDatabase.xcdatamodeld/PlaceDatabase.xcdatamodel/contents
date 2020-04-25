@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AppDataInit" representedClassName="AppDataInit" syncable="YES" codeGenerationType="class">
+        <attribute name="first_time_launch" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="Place" representedClassName="Place" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,5 +20,6 @@
     <elements>
         <element name="Place" positionX="-571.30859375" positionY="-53.7109375" width="128" height="165"/>
         <element name="TempPlace" positionX="-27" positionY="81" width="128" height="75"/>
+        <element name="AppDataInit" positionX="-360" positionY="36" width="128" height="60"/>
     </elements>
 </model>

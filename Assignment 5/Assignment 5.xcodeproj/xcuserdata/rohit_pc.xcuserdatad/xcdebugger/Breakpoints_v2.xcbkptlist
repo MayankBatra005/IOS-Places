@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment 5/Controllers/PlaceListViewContoller.swift"
-            timestampString = "609535639.189291"
+            timestampString = "609541444.0443929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "PlaceListViewController"
-            landmarkType = "3">
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "syncinit()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Assignment 5/Model/PlaceLibrary.swift"
-            timestampString = "609535639.189654"
+            timestampString = "609541444.045323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"

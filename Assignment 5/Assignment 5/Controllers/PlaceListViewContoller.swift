@@ -28,6 +28,8 @@ class PlaceListViewController: UITableViewController, ConnectionStatus, ServerCh
     var modifiedPlace = PlaceDescription()
     let db = PlaceDB()
     let tempDb = NonSyncPlace()
+    let initAppData = InitialAppData()
+    
     var selectedPlaceName: String?
     
     // This is a check condition for swipe to refresh
@@ -42,9 +44,7 @@ class PlaceListViewController: UITableViewController, ConnectionStatus, ServerCh
         setupSwipeToRefersh()
         initDataBase()
         setCustomizedNavBar()
-        
         tempDb.getAllNonSyncState()
-        
     }
     
     /**********************************************************************************************************************
@@ -179,6 +179,13 @@ class PlaceListViewController: UITableViewController, ConnectionStatus, ServerCh
     }
     
     private  func initDataBase(){
+        
+        print("AppLoaded ? "+initAppData.ifAppLaunchedFirstTime().description)
+        
+        if !initAppData.ifAppLaunchedFirstTime(){
+            initAppData.appLoaded()
+            db.addPlace(place: initAppData.getInitailData())
+        }
         db.getAllPlacesFromDatabase(vc: self)
     }
     

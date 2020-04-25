@@ -50,7 +50,7 @@ class PlaceLibrary{
             if err != nil{
                 NSLog(err!)
             }else{
-//                NSLog(res)
+                NSLog(res)
                 if let data: Data = res.data(using: String.Encoding.utf8){
                     
                     
@@ -97,13 +97,10 @@ class PlaceLibrary{
         connection.getNames(callback: { (res: String, err: String?) -> Void in
             
             if err != nil {
-                 print("Here 2.2e")
-//                placeListVC.syncProgress(connectionSuccess: false)
+                
             }else{
                 NSLog(res)
-                 print("Here 2.2")
-//                placeListVC.syncProgress(connectionSuccess: true)
-                print("Here 3")
+                
                 if let data: Data = res.data(using: String.Encoding.utf8){
                     
                     do {
@@ -115,7 +112,6 @@ class PlaceLibrary{
                             listSize = placeNamesArray.count
                             
                             for placeName in placeNamesArray{
-                                print("Here 4 "+placeName)
                                 loadPlaceinPlaceList(placeName: placeName, vc: vc)
                             }
                             
