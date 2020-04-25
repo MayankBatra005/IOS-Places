@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Place" representedClassName="Place" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="elevation" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street_address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street_title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TempPlace" representedClassName="TempPlace" syncable="YES" codeGenerationType="class">
+        <attribute name="place_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sync_action" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Place" positionX="-571.30859375" positionY="-53.7109375" width="128" height="165"/>
+        <element name="TempPlace" positionX="-27" positionY="81" width="128" height="75"/>
+    </elements>
+</model>
