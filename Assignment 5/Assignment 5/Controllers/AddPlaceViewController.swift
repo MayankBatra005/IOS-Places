@@ -33,11 +33,17 @@ class AddPlaceViewController: UIViewController, DialogCallBack {
     
     var currentPlace = PlaceDescription()
     
+    /**********************************************************************************************************************
+                                                Life cycle methods
+     **********************************************************************************************************************/
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
+    /**********************************************************************************************************************
+                                                IBAction
+     **********************************************************************************************************************/
     @IBAction func clickMe(_ sender: Any) {
         print("This click")
     }
@@ -46,6 +52,17 @@ class AddPlaceViewController: UIViewController, DialogCallBack {
         Alert.savePlaceAlert(on: self)
     }
     
+    
+    /**********************************************************************************************************************
+                                                Callback methods
+     **********************************************************************************************************************/
+    func okButtonCliked() {
+        performSegue(withIdentifier: "SaveAddPlace", sender: getCurrentPlaceFromUI())
+    }
+    
+    /**********************************************************************************************************************
+                                                Segue related methods
+     **********************************************************************************************************************/
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier=="SaveAddPlace"){
             
@@ -54,6 +71,9 @@ class AddPlaceViewController: UIViewController, DialogCallBack {
         }
     }
     
+    /**********************************************************************************************************************
+                                                Helper methods
+     **********************************************************************************************************************/
     func getCurrentPlaceFromUI() -> PlaceDescription {
         currentPlace.placeName = placeName.text
         currentPlace.placeDescription = placeDescription.text
@@ -65,9 +85,4 @@ class AddPlaceViewController: UIViewController, DialogCallBack {
         currentPlace.longitude = Double(longitude.text ?? "")
         return currentPlace
     }
-    
-    func okButtonCliked() {
-        performSegue(withIdentifier: "SaveAddPlace", sender: getCurrentPlaceFromUI())
-    }
-    
 }

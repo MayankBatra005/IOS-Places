@@ -26,15 +26,14 @@ class PlaceListViewController: UITableViewController, ConnectionStatus, ServerCh
     
     var placeselectedIndex = 0
     var modifiedPlace = PlaceDescription()
+    var selectedPlaceName: String?
+    
     let db = PlaceDB()
     let tempDb = NonSyncPlace()
     let initAppData = InitialAppData()
     
-    var selectedPlaceName: String?
-    
     // This is a check condition for swipe to refresh
     var isRefeshing:Bool = false;
-    
     
     /**********************************************************************************************************************
                                         Life cycle methods
@@ -125,11 +124,22 @@ class PlaceListViewController: UITableViewController, ConnectionStatus, ServerCh
         
     }
     
-    
     func nonSyncPlacesPused() {
         print("Non synced places pushed")
         PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
         db.deleteAllPlaces()
+    }
+    
+    func isconnected() {
+        print("Server Connected")
+        tempDb.pushPendingToserver(connectionCallback: self)
+        db.deleteAllPlaces()
+        PlaceLibrary.loadAllPlacesFromMemory(vc: self)
+    }
+    
+    func notconnected() {
+        print("Server not connected")
+        syncEnd()
     }
     
     /**********************************************************************************************************************
@@ -137,8 +147,6 @@ class PlaceListViewController: UITableViewController, ConnectionStatus, ServerCh
      **********************************************************************************************************************/
     @objc private func syncinit()  {
         isRefeshing = true;
-        
-//        PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
         PlaceLibrary.loadAllPlacesFromMemory(vc: self)
     }
     
@@ -153,6 +161,12 @@ class PlaceListViewController: UITableViewController, ConnectionStatus, ServerCh
     
     public func syncEnd(){
         refreshList()
+    }
+    
+    public func refreshList(){
+        isRefeshing = false;
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
     private func addNewPlace(){
@@ -179,20 +193,11 @@ class PlaceListViewController: UITableViewController, ConnectionStatus, ServerCh
     }
     
     private  func initDataBase(){
-        
-        print("AppLoaded ? "+initAppData.ifAppLaunchedFirstTime().description)
-        
         if !initAppData.ifAppLaunchedFirstTime(){
             initAppData.appLoaded()
             db.addPlace(place: initAppData.getInitailData())
         }
         db.getAllPlacesFromDatabase(vc: self)
-    }
-    
-    public func refreshList(){
-        isRefeshing = false;
-        self.tableView.reloadData()
-        self.refreshControl?.endRefreshing()
     }
     
     private func setupSwipeToRefersh(){
@@ -213,29 +218,9 @@ class PlaceListViewController: UITableViewController, ConnectionStatus, ServerCh
         PlaceLibrary.loadAllPlacesFromMemory(vc:self)
     }
     
-    
-    
-    
-    
-    
-    //////
     @objc private func serverSyncStart(){
         isRefeshing = true;
         PlaceLibrary.checkServerConnection(connectionCallback: self)
-    }
-    
-    func isconnected() {
-        print("Server Connected")
-        tempDb.pushPendingToserver(connectionCallback: self)
-//        PlaceLibrary.allremotePlaces = Array<PlaceDescription>()
-        db.deleteAllPlaces()
-        PlaceLibrary.loadAllPlacesFromMemory(vc: self)
-        
-    }
-    
-    func notconnected() {
-        print("Server not connected")
-        syncEnd()
     }
     
 }

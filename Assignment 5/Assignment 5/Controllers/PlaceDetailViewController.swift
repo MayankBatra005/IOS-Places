@@ -42,6 +42,9 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
     let deleteItemClicked = 0
     let modifyItemClicked = 1
     
+    /**********************************************************************************************************************
+                                                Life cycle methods
+     **********************************************************************************************************************/
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -60,7 +63,9 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         placesPickerView.isHidden = true
     }
     
-    
+    /**********************************************************************************************************************
+                                                IBAction
+     **********************************************************************************************************************/
     @IBAction func onDeleteClicked(_ sender: Any) {
         
         showDeleteAlert(title: "Delete", message: "Do you really want to delete this place?")
@@ -72,17 +77,28 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         Alert.editPlaceAlet(on: self)
     }
     
-    func showDeleteAlert(title: String, message: String){
-        
-        menuItemClicked = deleteItemClicked
-        Alert.deletePlaceAlert(on: self)
-
+    
+    @IBAction func pickPlaceButtonClicked(_ sender: Any) {
+        placesPickerView.isHidden = false
     }
     
+    /**********************************************************************************************************************
+                                                Callback methods
+     **********************************************************************************************************************/
+    func okButtonCliked() {
+        
+        if(menuItemClicked == deleteItemClicked){
+            deletethePlace()
+        }else if(menuItemClicked == modifyItemClicked){
+            modifyPlace()
+        }
+    }
+    
+    /**********************************************************************************************************************
+                                                Segue related methods
+     **********************************************************************************************************************/
     func deletethePlace(){
-        
         performSegue(withIdentifier: "gobacktoPlaceList", sender: nil)
-        
     }
     
     func modifyPlace(){
@@ -96,30 +112,9 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         }
     }
     
-    func getPlaceFromUI() -> PlaceDescription{
-        
-        currentPlace?.placeName = placeName.text
-        currentPlace?.placeDescription = placeDescription.text
-        currentPlace?.category = category.text
-        currentPlace?.streetTitle = streetTitle.text
-        currentPlace?.streetAddress = streetAddress.text
-        currentPlace?.elevation = Double(elevation.text)
-        currentPlace?.latitude = Double(latitude.text)
-        currentPlace?.longitude = Double(longitude.text)
-        
-        return currentPlace ?? PlaceDescription()
-    }
-    
-    func okButtonCliked() {
-        
-        if(menuItemClicked == deleteItemClicked){
-            deletethePlace()
-        }else if(menuItemClicked == modifyItemClicked){
-            modifyPlace()
-        }
-        
-    }
-    
+    /**********************************************************************************************************************
+                                                PickerView methods
+     **********************************************************************************************************************/
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -143,8 +138,27 @@ class PlaceDetailViewController: UIViewController, DialogCallBack, UIPickerViewD
         placesPickerView.isHidden = true
     }
     
-    @IBAction func pickPlaceButtonClicked(_ sender: Any) {
-        placesPickerView.isHidden = false
+    
+    /**********************************************************************************************************************
+                                                Helper methods
+     **********************************************************************************************************************/
+    func showDeleteAlert(title: String, message: String){
+        menuItemClicked = deleteItemClicked
+        Alert.deletePlaceAlert(on: self)
+    }
+    
+    func getPlaceFromUI() -> PlaceDescription{
+        
+        currentPlace?.placeName = placeName.text
+        currentPlace?.placeDescription = placeDescription.text
+        currentPlace?.category = category.text
+        currentPlace?.streetTitle = streetTitle.text
+        currentPlace?.streetAddress = streetAddress.text
+        currentPlace?.elevation = Double(elevation.text)
+        currentPlace?.latitude = Double(latitude.text)
+        currentPlace?.longitude = Double(longitude.text)
+        
+        return currentPlace ?? PlaceDescription()
     }
     
 }
