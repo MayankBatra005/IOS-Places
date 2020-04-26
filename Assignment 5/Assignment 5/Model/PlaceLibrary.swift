@@ -26,16 +26,14 @@ class PlaceLibrary{
     static var allremotePlaces = Array<PlaceDescription>()
     private static var urlString:String = "http://127.0.0.1:8080"
     
+    // This helps in detern=mining when all places are parced
     private static var listSize: Int = 0
     private static var placeParced: Int = 0
 
-    
     static func loadAllPlacesFromMemory(vc: UIViewController){
         allremotePlaces = Array<PlaceDescription>()
-        print("Here 1.1" + allremotePlaces.count.description)
         getAllPlacesFromServer(vc: vc)
     }
-    
     
     static func getAllPlaces() -> Array<PlaceDescription>{
         return allremotePlaces
@@ -53,18 +51,13 @@ class PlaceLibrary{
                 NSLog(res)
                 if let data: Data = res.data(using: String.Encoding.utf8){
                     
-                    
                     do {
                         if let jsonObject = try JSONSerialization.jsonObject(with: data, options : []) as? [String: Any]{
                             
                             let placeDetail = jsonObject["result"] as? [String:Any]
-                            
                             let place: PlaceDescription = getPlaceDescFromJson(jsonObject: placeDetail ?? ["":nil])
-                            print("Here 6")
                             allremotePlaces.append(place)
-                            print("Here 7")
                             db.addPlace(place: place)
-                            print("Here 8")
                             
                         } else {
                             print("bad json")
@@ -74,25 +67,19 @@ class PlaceLibrary{
                     }
                 }
             }
-            
             placeParced = placeParced+1
-            
-           print(placeParced.description + " " + listSize.description)
-            
             if(placeParced==listSize){
                 let placeListVC = vc as! PlaceListViewController
                 placeListVC.refreshList()
             }
-            
         })
     }
     
     static func getAllPlacesFromServer(vc : UIViewController){
-        print("Here 2")
-        let connection: PlaceCollectionAsyncTask = PlaceCollectionAsyncTask(urlString: urlString)
-        print("Here 2.1")
-        placeParced = 0
         
+        let connection: PlaceCollectionAsyncTask = PlaceCollectionAsyncTask(urlString: urlString)
+        
+        placeParced = 0
         
         connection.getNames(callback: { (res: String, err: String?) -> Void in
             
@@ -108,7 +95,6 @@ class PlaceLibrary{
                             
                             let placelist = vc as! PlaceListViewController
                             let placeNamesArray = jsonObject["result"] as! [String]
-                            
                             listSize = placeNamesArray.count
                             
                             for placeName in placeNamesArray{
@@ -159,6 +145,22 @@ class PlaceLibrary{
         return dict
     }
     
+    
+    static func checkServerConnection(connectionCallback: ServerChecker){
+        
+        let connection = PlaceCollectionAsyncTask(urlString: urlString)
+        connection.remove(placeName: "DEFAULTSERVERPLACE763432", callback: {(res: String, err: String?) -> Void in
+            
+            if err != nil {
+                NSLog(err!)
+                connectionCallback.notconnected()
+            }else{
+                connectionCallback.isconnected()
+            }
+            
+        })
+    }
+    
     static func deletePlaceOnServer(placeName: String, connectionCallback: ConnectionStatus){
         let connection = PlaceCollectionAsyncTask(urlString: urlString)
         connection.remove(placeName: placeName, callback: {(res: String, err: String?) -> Void in
@@ -191,21 +193,4 @@ class PlaceLibrary{
         deletePlaceOnServer(placeName: oldName, connectionCallback: connectionCallback)
         addPlaceOnServer(place: modifiedObject, connectionCallback: connectionCallback)
     }
-    
-    
-    static func checkServerConnection(connectionCallback: ServerChecker){
-        
-        let connection = PlaceCollectionAsyncTask(urlString: urlString)
-        connection.remove(placeName: "DEFAULTSERVERPLACE763432", callback: {(res: String, err: String?) -> Void in
-            
-            if err != nil {
-                NSLog(err!)
-                connectionCallback.notconnected()
-            }else{
-                connectionCallback.isconnected()
-            }
-            
-        })
-    }
-    
 }
