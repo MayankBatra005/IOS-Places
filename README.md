@@ -1,4 +1,4 @@
-# IOS Places
+# IOS Places App
 <img width="120" height="90" src="https://user-images.githubusercontent.com/11274840/80289878-774f8b80-86f6-11ea-8ba5-d57b9d9884d4.jpg">
 
 # Overview 
