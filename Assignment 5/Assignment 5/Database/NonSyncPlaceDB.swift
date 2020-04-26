@@ -90,8 +90,7 @@ class NonSyncPlace{
         
     }
     
-    
-     func pushPendingToserver(connectionCallback: ConnectionStatus){
+    func pushPendingToserver(connectionCallback: ConnectionStatus){
         
         let results = getAllNonSyncState();
         

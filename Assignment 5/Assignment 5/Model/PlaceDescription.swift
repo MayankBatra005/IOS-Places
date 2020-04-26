@@ -32,7 +32,6 @@ class PlaceDescription {
     var latitude: Double?
     var longitude: Double?
     
-    
     init() {
         
     }
